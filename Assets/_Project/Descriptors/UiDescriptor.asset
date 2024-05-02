@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07cee6cc59e37114993afae705f20290, type: 3}
+  m_Name: UiDescriptor
+  m_EditorClassIdentifier: 
+  MainMenuPanelPrefab: {fileID: 4740618019091820628, guid: fb97fc168390ed248a609d095b7f0ed7, type: 3}
+  LevelWinPanelPrefab: {fileID: 8553460927948700044, guid: 39a2663ffee81df4893d7551d1f2112c, type: 3}
+  GameOverPanelPrefab: {fileID: -602535100392413510, guid: e29bd562c8a0a364aaf432d50ddc8b4a, type: 3}

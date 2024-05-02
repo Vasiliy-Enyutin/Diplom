@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77c111be3032429181b0ec2ddcc2552c, type: 3}
+  m_Name: DescriptorInstaller
+  m_EditorClassIdentifier: 
+  _playerDescriptor: {fileID: 11400000, guid: 433d9d0fb750bb34ca9f3a506dc30d97, type: 2}
+  _locationDescriptor: {fileID: 11400000, guid: 77204ea96d0234c4983495cf2a17359a, type: 2}
+  _labyrinthDescriptor: {fileID: 11400000, guid: 6c3000ab2ee29f34e9cbd4cbd75b1f73, type: 2}
+  _enemyDescriptor: {fileID: 11400000, guid: 56d6599e8d352b9468640ba45fcca366, type: 2}
+  _uiDescriptor: {fileID: 11400000, guid: 1825863016a2cc04d897ce326fa99a27, type: 2}
