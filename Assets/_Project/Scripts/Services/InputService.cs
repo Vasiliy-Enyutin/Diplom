@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace _Project.Scripts.PlayerLogic
+namespace _Project.Scripts.Services
 {
-    public class PlayerInputService : MonoBehaviour
+    public class InputService : MonoBehaviour
     {
         public Vector3 MoveDirection
         {

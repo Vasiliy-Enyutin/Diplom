@@ -6,5 +6,6 @@ namespace _Project.Scripts.Descriptors
 	public class LocationDescriptor : ScriptableObject
 	{
 		public Vector3 InitialPlayerPositionPoint;
+		public Vector3 InitialEnemyPositionPoint;
 	}
 }

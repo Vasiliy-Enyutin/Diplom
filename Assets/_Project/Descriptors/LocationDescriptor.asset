@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: LocationDescriptor
   m_EditorClassIdentifier: 
   InitialPlayerPositionPoint: {x: 0, y: 0, z: 0}
+  InitialEnemyPositionPoint: {x: 5, y: 0, z: 5}

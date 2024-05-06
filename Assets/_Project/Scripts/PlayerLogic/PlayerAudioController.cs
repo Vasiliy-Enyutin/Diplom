@@ -1,3 +1,4 @@
+using _Project.Scripts.Services;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -11,7 +12,7 @@ namespace _Project.Scripts.PlayerLogic
         public AudioClip[] _footstepsAudioClips;
         
         [Inject]
-        private PlayerInputService _playerInputService = null!;
+        private InputService _inputService = null!;
         
         private AudioSource _audioSource;
 
@@ -23,7 +24,7 @@ namespace _Project.Scripts.PlayerLogic
 
         private void Update()
         {
-            UpdateFootstepSound(_playerInputService.MoveDirection);
+            UpdateFootstepSound(_inputService.MoveDirection);
         }
 
         private void UpdateFootstepSound(Vector3 moveDirection)
@@ -36,14 +37,6 @@ namespace _Project.Scripts.PlayerLogic
             int randomIndex = Random.Range(0, _footstepsAudioClips.Length);
             AudioClip audioClip = _footstepsAudioClips[randomIndex];
             _audioSource.PlayOneShot(audioClip);
-        }
-
-        public void ConstructTest(Vector3 moveDirection, AudioSource audioSource = null, AudioClip[] audioClip = null)
-        {
-            _audioSource = audioSource;
-            _footstepsAudioClips = audioClip;
-            
-            UpdateFootstepSound(moveDirection);
         }
     }
 }

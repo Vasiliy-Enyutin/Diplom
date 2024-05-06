@@ -2,7 +2,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 using Zenject;
 
-namespace _Project.Scripts
+namespace _Project.Scripts.Services
 {
 	[UsedImplicitly]
 	public class AssetProviderService

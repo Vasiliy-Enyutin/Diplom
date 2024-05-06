@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,8 +10,12 @@ namespace _Project.Scripts.EnemyLogic
         [SerializeField]
         private Animator _animator = null!;
         
-        [SerializeField]
         private NavMeshAgent _agent = null!;
+
+        private void Awake()
+        {
+	        _agent = GetComponent<NavMeshAgent>();
+        }
 
         private void Update()
         {
@@ -25,13 +30,6 @@ namespace _Project.Scripts.EnemyLogic
         private void UpdateAnimation(Vector3 agentVelocity)
         {
             _animator.Play(agentVelocity == Vector3.zero ? "Idle" : "Run");
-        }
-        
-        public void ConstructTest(Animator animator, Vector3 agentVelocity)
-        {
-            _animator = animator;
-
-            UpdateAnimation(agentVelocity);
         }
     }
 }

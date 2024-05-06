@@ -14,6 +14,7 @@ namespace _Project.Scripts.EnemyLogic
         private AudioSource _audioSource;
         private Enemy _enemy;
         private bool _isPursuitSoundPlaying = false;
+        private AudioClip _currentAttackSound;
         
         private void Awake()
         {
@@ -55,10 +56,10 @@ namespace _Project.Scripts.EnemyLogic
             while (_isPursuitSoundPlaying)
             {
                 int randomIndex = Random.Range(0, _attackAudioClips.Length);
-                CurrentAttackSoundTest = _attackAudioClips[randomIndex];
-                _audioSource.PlayOneShot(CurrentAttackSoundTest);
+                _currentAttackSound = _attackAudioClips[randomIndex];
+                _audioSource.PlayOneShot(_currentAttackSound);
 
-                yield return new WaitForSeconds(CurrentAttackSoundTest.length);
+                yield return new WaitForSeconds(_currentAttackSound.length);
             }
         }
 
@@ -78,17 +79,5 @@ namespace _Project.Scripts.EnemyLogic
             _audioSource.loop = true;
             _audioSource.Play();
         }
-
-        public void ConstructTest(bool isPursuingPlayer, bool isPursuitSoundPlaying, AudioSource audioSource = null,
-            AudioClip idleAudioClip = null, AudioClip[] attackAudioClips = null)
-        {
-            _audioSource = audioSource;
-            _idleAudioClip = idleAudioClip;
-            _attackAudioClips = attackAudioClips;
-
-            UpdateSound(isPursuingPlayer, isPursuitSoundPlaying);
-        }
-        
-        public AudioClip CurrentAttackSoundTest { get; private set; }
     }
 }

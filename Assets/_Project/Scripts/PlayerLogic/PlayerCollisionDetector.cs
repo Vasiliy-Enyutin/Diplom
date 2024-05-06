@@ -10,19 +10,5 @@ namespace _Project.Scripts.PlayerLogic
         {
             _player = GetComponent<Player>();
         }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.TryGetComponent(out Finish _))
-            {
-                _player.CollisionWithFinish();
-            }
-        }
-        
-        public void ConstructTest(Collider collider, Player player)
-        {
-            _player = player;
-            OnTriggerEnter(collider);
-        }
     }
 }

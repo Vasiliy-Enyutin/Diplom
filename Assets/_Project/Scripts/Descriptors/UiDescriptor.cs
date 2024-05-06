@@ -7,7 +7,6 @@ namespace _Project.Scripts.Descriptors
     public class UiDescriptor : ScriptableObject
     {
         public MainMenuPanel MainMenuPanelPrefab;
-        public LevelWinPanel LevelWinPanelPrefab;
         public GameOverPanel GameOverPanelPrefab;
     }
 }

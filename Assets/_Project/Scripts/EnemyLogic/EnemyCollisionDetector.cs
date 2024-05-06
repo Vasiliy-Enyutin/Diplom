@@ -12,10 +12,5 @@ namespace _Project.Scripts.EnemyLogic
                 player.Die();
             }
         }
-
-        public void ConstructTest(Collider collider)
-        {
-            OnTriggerEnter(collider);
-        }
     }
 }

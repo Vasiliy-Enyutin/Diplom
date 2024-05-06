@@ -1,4 +1,3 @@
-using System;
 using _Project.Scripts.PlayerLogic;
 using _Project.Scripts.Services;
 using _Project.Scripts.UI;
@@ -28,13 +27,12 @@ namespace _Project.Scripts
             DisableCharactersMovement();
 
             _uiManager.OnUserReadyToPlay += StartGame;
-            _uiManager.OnNextLevelKeyPressed += GoToNextLevel;
             _uiManager.OnRestartKeyPressed += RestartLevel;
+            if (_gameFactoryService.Player != null)
+            {
+	            _gameFactoryService.Player.OnDestroy += ShowGameOverPanel;
+            }
 
-            Player player = _gameFactoryService.Player;
-            player.OnReachedFinish += ShowNextLevelPanel;
-            player.OnDestroy += ShowGameOverPanel;
-            
             _uiManager.ShowMenu(Menu.Main);
         }
 
@@ -71,17 +69,6 @@ namespace _Project.Scripts
         {
             DisableCharactersMovement();
             _uiManager.ShowMenu(Menu.GameOver);
-        }
-
-        private void ShowNextLevelPanel()
-        {
-            _uiManager.ShowMenu(Menu.Win);
-        }
-
-        private void GoToNextLevel()
-        {
-            //TODO Пока нет других уровней делаю рестарт текущего
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         private void RestartLevel()

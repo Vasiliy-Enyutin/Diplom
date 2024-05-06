@@ -1,3 +1,4 @@
+using _Project.Scripts.Services;
 using UnityEngine;
 using Zenject;
 
@@ -10,28 +11,21 @@ namespace _Project.Scripts.PlayerLogic
         private Animator _animator = null!;
         
         [Inject]
-        private PlayerInputService _playerInputService = null!;
+        private InputService _inputService = null!;
 
         private void Update()
         {
-            if (_playerInputService == null)
+            if (_inputService == null)
             {
                 return;
             }
             
-            UpdateAnimation(_playerInputService.MoveDirection);
+            UpdateAnimation(_inputService.MoveDirection);
         }
 
         private void UpdateAnimation(Vector3 moveDirection)
         {
             _animator.Play(moveDirection == Vector3.zero ? "Idle" : "Run");
-        }
-
-        public void ConstructTest(Animator animator, Vector3 moveDirection)
-        {
-            _animator = animator;
-
-            UpdateAnimation(moveDirection);
         }
     }
 }

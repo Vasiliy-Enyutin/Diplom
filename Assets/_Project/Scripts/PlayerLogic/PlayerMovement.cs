@@ -1,4 +1,5 @@
 using _Project.Scripts.Descriptors;
+using _Project.Scripts.Services;
 using UnityEngine;
 using Zenject;
 
@@ -10,27 +11,26 @@ namespace _Project.Scripts.PlayerLogic
         private Transform _playerGfxTransform;
         
         [Inject]
-        private PlayerInputService _playerInputService = null!;
-        [Inject]
-        private PlayerDescriptor _playerDescriptor = null!;
+        private InputService _inputService = null!;
 
+        private PlayerDescriptor _playerDescriptor;
         private Rigidbody _rigidbody = null!;
-        
         private Vector3 _moveDirection;
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
+            _playerDescriptor = GetComponent<Player>().PlayerDescriptor;
         }
 
         private void FixedUpdate()
         {
-            if (_playerInputService == null || _playerDescriptor == null)
+            if (_inputService == null || _playerDescriptor == null)
             {
                 return;
             }
 
-            Move(_playerInputService.MoveDirection, _playerDescriptor.MoveSpeed);
+            Move(_inputService.MoveDirection, _playerDescriptor.MoveSpeed);
             RotatePlayer();
         }
 
@@ -53,20 +53,6 @@ namespace _Project.Scripts.PlayerLogic
             }
 
             _rigidbody.MovePosition(transform.position + _moveDirection * moveSpeed * Time.fixedDeltaTime);
-        }
-
-        public void ConstructTest(Transform playerGfxTransform, Vector3 moveDirection, float moveSpeed, Rigidbody rigidbody)
-        {
-            _playerGfxTransform = playerGfxTransform;
-            _rigidbody = rigidbody;
-            
-            Move(moveDirection, moveSpeed);
-            RotatePlayer();
-        }
-
-        public Vector3 GetMoveDirectionTest()
-        {
-            return _moveDirection;
         }
     }
 }
