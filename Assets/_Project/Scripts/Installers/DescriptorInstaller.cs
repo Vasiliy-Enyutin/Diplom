@@ -11,8 +11,6 @@ namespace _Project.Scripts.Installers
 		private PlayerDescriptor _playerDescriptor = null!;
 		[SerializeField]
 		private LocationDescriptor _locationDescriptor = null!;
-		[SerializeField]
-		private LabyrinthDescriptor _labyrinthDescriptor = null!;
 		[SerializeField] 
 		private EnemyDescriptor _enemyDescriptor;
 		[SerializeField]
@@ -22,7 +20,6 @@ namespace _Project.Scripts.Installers
 		{
 			Container.BindInstance(_playerDescriptor).AsSingle();
 			Container.BindInstance(_locationDescriptor).AsSingle();
-			Container.BindInstance(_labyrinthDescriptor).AsSingle();
 			Container.BindInstance(_enemyDescriptor).AsSingle();
 			Container.BindInstance(_uiDescriptor).AsSingle();
 		}
