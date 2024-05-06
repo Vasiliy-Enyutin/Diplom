@@ -20,26 +20,22 @@ namespace _Project.Scripts.PlayerLogic
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            _playerDescriptor = GetComponent<Player>().PlayerDescriptor;
+        }
+
+        private void Start()
+        {
+	        _playerDescriptor = GetComponent<Player>().PlayerDescriptor;
         }
 
         private void FixedUpdate()
         {
-            if (_inputService == null || _playerDescriptor == null)
+	        if (_inputService == null || _playerDescriptor == null)
             {
                 return;
             }
-
+            
             Move(_inputService.MoveDirection, _playerDescriptor.MoveSpeed);
             RotatePlayer();
-        }
-
-        private void RotatePlayer()
-        {
-            if (_moveDirection.magnitude > 0)
-            {
-                _playerGfxTransform.rotation = Quaternion.LookRotation(_moveDirection);
-            }
         }
 
         private void Move(Vector3 moveDirection, float moveSpeed)
@@ -53,6 +49,14 @@ namespace _Project.Scripts.PlayerLogic
             }
 
             _rigidbody.MovePosition(transform.position + _moveDirection * moveSpeed * Time.fixedDeltaTime);
+        }
+
+        private void RotatePlayer()
+        {
+	        if (_moveDirection.magnitude > 0)
+	        {
+		        _playerGfxTransform.rotation = Quaternion.LookRotation(_moveDirection);
+	        }
         }
     }
 }

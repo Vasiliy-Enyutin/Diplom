@@ -645,7 +645,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 028b99d575b949abb68cc791b97aad23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerInputServicePrefab: {fileID: 8143843080792472803, guid: 1245d7334ad3ec74b8683be2473a674a, type: 3}
+  inputServicePrefab: {fileID: 8143843080792472803, guid: 1245d7334ad3ec74b8683be2473a674a, type: 3}
   _uiManager: {fileID: 640148083137886105, guid: 204475bc1c1966c4482469de99352082, type: 3}
 --- !u!114 &1605380671
 MonoBehaviour:
