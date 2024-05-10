@@ -1,3 +1,4 @@
+using System;
 using _Project.Scripts.Services;
 using UnityEngine;
 using Zenject;
@@ -5,13 +6,17 @@ using Zenject;
 namespace _Project.Scripts.PlayerLogic
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class PlayerAnimator : MonoBehaviour
+    public class PlayerAnimationController : MonoBehaviour
     {
         [SerializeField]
         private Animator _animator = null!;
-        
-        [Inject]
-        private InputService _inputService = null!;
+
+        private InputService _inputService;
+
+        private void Start()
+        {
+	        _inputService = GetComponent<Player>().InputService;
+        }
 
         private void Update()
         {

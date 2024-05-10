@@ -19,6 +19,8 @@ namespace _Project.Scripts.Services
 		private LocationDescriptor _locationDescriptor = null!;
 		[Inject]
 		private EnemyDescriptor _enemyDescriptor;
+		[Inject]
+		private InputService _inputService;
 
 		public Player Player { get; private set; }
 
@@ -27,7 +29,7 @@ namespace _Project.Scripts.Services
 		public void CreatePlayer()
 		{
 			Player = _assetProviderService.CreateAsset<Player>(_playerDescriptor.Prefab, _locationDescriptor.InitialPlayerPositionPoint);
-			Player.Init(_playerDescriptor);
+			Player.Init(_playerDescriptor, _inputService);
 		}
 
 		public void CreateEnemies()

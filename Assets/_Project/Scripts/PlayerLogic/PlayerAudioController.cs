@@ -1,3 +1,4 @@
+using System;
 using _Project.Scripts.Services;
 using UnityEngine;
 using Zenject;
@@ -11,15 +12,18 @@ namespace _Project.Scripts.PlayerLogic
         [SerializeField]
         public AudioClip[] _footstepsAudioClips;
         
-        [Inject]
         private InputService _inputService = null!;
-        
         private AudioSource _audioSource;
 
 
         private void Awake()
         {
             _audioSource = GetComponent<AudioSource>();
+        }
+
+        private void Start()
+        {
+	        _inputService = GetComponent<Player>().InputService;
         }
 
         private void Update()

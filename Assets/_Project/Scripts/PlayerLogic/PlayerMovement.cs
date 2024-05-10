@@ -1,7 +1,6 @@
 using _Project.Scripts.Descriptors;
 using _Project.Scripts.Services;
 using UnityEngine;
-using Zenject;
 
 namespace _Project.Scripts.PlayerLogic
 {
@@ -10,10 +9,8 @@ namespace _Project.Scripts.PlayerLogic
         [SerializeField] 
         private Transform _playerGfxTransform;
         
-        [Inject]
+        private PlayerDescriptor _playerDescriptor = null!;
         private InputService _inputService = null!;
-
-        private PlayerDescriptor _playerDescriptor;
         private Rigidbody _rigidbody = null!;
         private Vector3 _moveDirection;
 
@@ -25,6 +22,7 @@ namespace _Project.Scripts.PlayerLogic
         private void Start()
         {
 	        _playerDescriptor = GetComponent<Player>().PlayerDescriptor;
+	        _inputService = GetComponent<Player>().InputService;
         }
 
         private void FixedUpdate()

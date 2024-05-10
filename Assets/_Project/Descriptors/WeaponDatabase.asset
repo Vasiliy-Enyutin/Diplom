@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01f217e998664c71a314ba513c64d1e0, type: 3}
-  m_Name: PlayerDescriptor
+  m_Script: {fileID: 11500000, guid: bda4f79039b8416fbb9e0d70a3b37adf, type: 3}
+  m_Name: WeaponDatabase
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 5049951985513824092, guid: bd4173993958f14479601119aa1e708e, type: 3}
-  MoveSpeed: 5
-  WeaponDatabase: {fileID: 11400000, guid: 4098f0cbeb70fab4ca172392c0164425, type: 2}
+  meleeWeapon: {fileID: 11400000, guid: 7958d22360499594db031a93715dffb7, type: 2}
+  rangedWeapon: {fileID: 11400000, guid: 91f1db614d72733439cd041ea3d6b2e0, type: 2}
