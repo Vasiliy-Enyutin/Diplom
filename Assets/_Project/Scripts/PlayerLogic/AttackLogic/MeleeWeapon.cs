@@ -6,7 +6,7 @@ namespace _Project.Scripts.PlayerLogic.AttackLogic
 	{
 		public override void Attack()
 		{
-			Debug.Log($"Melee Attack: {_weaponData.weaponName} - Damage: {_weaponData.damage}");
+			Debug.Log($"Melee Attack: {_weaponData.WeaponName} - Damage: {_weaponData.Damage}");
 		}
 	}
 }

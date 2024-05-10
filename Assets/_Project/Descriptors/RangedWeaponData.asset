@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f290ef9b6a64d64a96931c1ce42fd71, type: 3}
   m_Name: RangedWeaponData
   m_EditorClassIdentifier: 
-  weaponName: Rifle
-  range: 10
-  damage: 100
-  reloadSpeed: 1
-  weaponPrefab: {fileID: 3812055732564327218, guid: e9e965d07c8edfc45ba3313c07ccd1a6, type: 3}
+  WeaponName: Rifle
+  WeaponType: 1
+  Range: 10
+  Damage: 100
+  ReloadSpeed: 2
+  WeaponPrefab: {fileID: 3812055732564327218, guid: e9e965d07c8edfc45ba3313c07ccd1a6, type: 3}

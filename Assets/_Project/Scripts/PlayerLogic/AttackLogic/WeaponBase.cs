@@ -7,6 +7,8 @@ namespace _Project.Scripts.PlayerLogic.AttackLogic
 	{
 		protected WeaponData _weaponData;
 
+		public WeaponType WeaponType => _weaponData.WeaponType;
+
 		public void SetWeaponData(WeaponData weaponData)
 		{
 			_weaponData = weaponData;

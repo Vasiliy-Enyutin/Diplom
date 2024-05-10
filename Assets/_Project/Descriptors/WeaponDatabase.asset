@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda4f79039b8416fbb9e0d70a3b37adf, type: 3}
   m_Name: WeaponDatabase
   m_EditorClassIdentifier: 
-  meleeWeapon: {fileID: 11400000, guid: 7958d22360499594db031a93715dffb7, type: 2}
-  rangedWeapon: {fileID: 11400000, guid: 91f1db614d72733439cd041ea3d6b2e0, type: 2}
+  Weapons:
+  - {fileID: 11400000, guid: 7958d22360499594db031a93715dffb7, type: 2}
+  - {fileID: 11400000, guid: 91f1db614d72733439cd041ea3d6b2e0, type: 2}

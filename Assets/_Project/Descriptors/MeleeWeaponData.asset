@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f290ef9b6a64d64a96931c1ce42fd71, type: 3}
   m_Name: MeleeWeaponData
   m_EditorClassIdentifier: 
-  weaponName: Axe
-  range: 1
-  damage: 25
-  reloadSpeed: 0.5
-  weaponPrefab: {fileID: 3812055732564327218, guid: beba9e41050eea149a40b49e48f538ff, type: 3}
+  WeaponName: Axe
+  WeaponType: 0
+  Range: 1
+  Damage: 25
+  ReloadSpeed: 0.5
+  WeaponPrefab: {fileID: 3812055732564327218, guid: beba9e41050eea149a40b49e48f538ff, type: 3}
