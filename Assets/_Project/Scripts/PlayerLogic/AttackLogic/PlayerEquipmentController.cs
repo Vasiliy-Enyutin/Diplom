@@ -7,6 +7,11 @@ namespace _Project.Scripts.PlayerLogic.AttackLogic
 {
     public class PlayerEquipmentController : MonoBehaviour
     {
+	    [SerializeField]
+	    private Transform _axeSpawnPointTransform;
+	    [SerializeField]
+	    private Transform _rifleSpawnPointTransform;
+	    
         private PlayerAttackController _attackController;
         private WeaponDatabase _weaponDatabase;
         private InputService _inputService;
@@ -30,7 +35,21 @@ namespace _Project.Scripts.PlayerLogic.AttackLogic
 	        {
 		        if (weaponData != null && weaponData.WeaponPrefab != null)
 		        {
-			        GameObject weaponObject = Instantiate(weaponData.WeaponPrefab, gameObject.transform);
+			        Transform spawnPoint;
+			        switch (weaponData.WeaponType)
+			        {
+				        case WeaponType.Melee:
+					        spawnPoint = _axeSpawnPointTransform;
+					        break;
+				        case WeaponType.Ranged:
+					        spawnPoint = _rifleSpawnPointTransform;
+					        break;
+				        default:
+					        Debug.LogError($"Unknown weapon type: {weaponData.WeaponType}");
+					        continue;
+			        }
+
+			        GameObject weaponObject = Instantiate(weaponData.WeaponPrefab, spawnPoint);
 			        WeaponBase weapon = weaponObject.GetComponent<WeaponBase>();
 			        weapon.SetWeaponData(weaponData);
 			        weapon.gameObject.SetActive(false);
@@ -38,6 +57,7 @@ namespace _Project.Scripts.PlayerLogic.AttackLogic
 		        }
 	        }
         }
+
 
         private void OnDestroy()
         {

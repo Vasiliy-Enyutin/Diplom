@@ -17,4 +17,4 @@ MonoBehaviour:
   Range: 1
   Damage: 25
   ReloadSpeed: 0.5
-  WeaponPrefab: {fileID: 3812055732564327218, guid: beba9e41050eea149a40b49e48f538ff, type: 3}
+  WeaponPrefab: {fileID: 1404118600022960193, guid: beba9e41050eea149a40b49e48f538ff, type: 3}
