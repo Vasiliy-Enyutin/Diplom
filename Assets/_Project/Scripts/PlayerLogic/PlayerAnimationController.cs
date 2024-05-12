@@ -1,3 +1,4 @@
+using _Project.Scripts.PlayerLogic.AttackLogic;
 using _Project.Scripts.Services;
 using UnityEngine;
 
@@ -12,10 +13,12 @@ namespace _Project.Scripts.PlayerLogic
 		private Transform _playerGfxTransform;
 
 		private InputService _inputService;
+		private PlayerAttackController _attackController;
 
 		private void Start()
 		{
 			_inputService = GetComponent<Player>().InputService;
+			_attackController = GetComponent<PlayerAttackController>();
 		}
 
 		private void Update()
@@ -30,9 +33,11 @@ namespace _Project.Scripts.PlayerLogic
 		
 		private void UpdateAnimation(Vector3 moveDirection, Vector3 facingDirection)
 		{
+			string prefix = _attackController.CurrentWeaponType == WeaponType.Melee ? "Melee" : "Ranged";
+
 			if (moveDirection == Vector3.zero)
 			{
-				_animator.Play("Idle");
+				_animator.Play(prefix + "Idle");
 			}
 			else
 			{
@@ -42,22 +47,22 @@ namespace _Project.Scripts.PlayerLogic
 				{
 					if (relativeDirection.x > 0.5f)
 					{
-						_animator.Play("RunRight");
+						_animator.Play(prefix + "RunRight");
 					}
 					else if (relativeDirection.x < -0.5f)
 					{
-						_animator.Play("RunLeft");
+						_animator.Play(prefix + "RunLeft");
 					}
 				}
 				else
 				{
 					if (relativeDirection.z > 0.5f)
 					{
-						_animator.Play("RunForward");
+						_animator.Play(prefix + "RunForward");
 					}
 					else if (relativeDirection.z < -0.5f)
 					{
-						_animator.Play("RunBackwards");
+						_animator.Play(prefix + "RunBackwards");
 					}
 				}
 			}

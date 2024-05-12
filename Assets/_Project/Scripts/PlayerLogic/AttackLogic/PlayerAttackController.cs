@@ -8,6 +8,8 @@ namespace _Project.Scripts.PlayerLogic.AttackLogic
 		private InputService _inputService;
 		private WeaponBase _currentWeapon;
 
+		public WeaponType CurrentWeaponType => _currentWeapon.WeaponType;
+
 		private void Start()
 		{
 			_inputService = GetComponent<Player>().InputService;
