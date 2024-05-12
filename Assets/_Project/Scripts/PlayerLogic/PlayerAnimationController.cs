@@ -11,6 +11,8 @@ namespace _Project.Scripts.PlayerLogic
         private Animator _animator = null!;
         [SerializeField]
         private Transform _playerGfxTransform;
+        [SerializeField]
+        private AnimationLifetimeHelper _animationLifetimeHelper;
 
         private InputService _inputService;
         private PlayerAttackController _attackController;
@@ -23,15 +25,20 @@ namespace _Project.Scripts.PlayerLogic
             _inputService = GetComponent<Player>().InputService;
             _attackController = GetComponent<PlayerAttackController>();
 
-            _attackController.OnAttacking += HandleAttacking; // Подписываемся на событие атаки
+            _animationLifetimeHelper.OnAttackAnimationEnd += OnAttackAnimationEnd;
+            _attackController.OnAttacking += HandleAttacking;
         }
 
         private void OnDestroy()
         {
-            // Отписываемся от события при уничтожении объекта
             if (_attackController != null)
             {
                 _attackController.OnAttacking -= HandleAttacking;
+            }
+
+            if (_animationLifetimeHelper != null)
+            {
+	            _animationLifetimeHelper.OnAttackAnimationEnd -= OnAttackAnimationEnd;
             }
         }
 
@@ -48,6 +55,7 @@ namespace _Project.Scripts.PlayerLogic
         private void UpdateAnimation(Vector3 moveDirection, Vector3 facingDirection)
         {
 	        currentWeaponPrefix = _attackController.CurrentWeaponType == WeaponType.Melee ? "Melee" : "Ranged";
+	        Debug.Log(_isAttacking);
 
 	        if (_isAttacking)
 	        {
