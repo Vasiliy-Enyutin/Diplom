@@ -62,29 +62,5 @@ namespace _Project.Scripts.PlayerLogic
 				}
 			}
 		}
-
-		// private void UpdateAnimation(Vector3 moveDirection)
-		// {
-		// 	if (moveDirection == Vector3.zero)
-		// 	{
-		// 		_animator.Play("Idle");
-		// 	}
-		// 	else if (moveDirection.x > 0 || (moveDirection.x > 0 && moveDirection.y > 0) || (moveDirection.x > 0 && moveDirection.y < 0))
-		// 	{
-		// 		_animator.Play("RunRight");
-		// 	}
-		// 	else if (moveDirection.x < 0 || (moveDirection.x < 0 && moveDirection.y > 0) || (moveDirection.x < 0 && moveDirection.y < 0))
-		// 	{
-		// 		_animator.Play("RunLeft");
-		// 	}
-		// 	else if (moveDirection.z < 0)
-		// 	{
-		// 		_animator.Play("RunBackwards");
-		// 	}
-		// 	else
-		// 	{
-		// 		_animator.Play("RunForward");
-		// 	}
-		// }
 	}
 }

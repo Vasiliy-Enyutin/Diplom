@@ -73,7 +73,6 @@ namespace _Project.Scripts.PlayerLogic
                 if (direction.magnitude > 0.1f)
                 {
                     Quaternion targetRotation = Quaternion.LookRotation(direction);
-                    // transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
                     _playerGfxTransform.rotation = Quaternion.Slerp(_playerGfxTransform.rotation, targetRotation, Time.deltaTime * 10f);
                 }
             }
