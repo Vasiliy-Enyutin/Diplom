@@ -1,3 +1,4 @@
+using System;
 using _Project.Scripts.Services;
 using UnityEngine;
 
@@ -7,7 +8,9 @@ namespace _Project.Scripts.PlayerLogic.AttackLogic
 	{
 		private InputService _inputService;
 		private WeaponBase _currentWeapon;
-
+		
+		public event Action OnAttacking;
+		
 		public WeaponType CurrentWeaponType => _currentWeapon.WeaponType;
 
 		private void Start()
@@ -28,10 +31,14 @@ namespace _Project.Scripts.PlayerLogic.AttackLogic
 
 		private void OnAttackButtonPressed()
 		{
+			// if _currentWeapon.IsReadyToAttack
+			//{
 			if (_currentWeapon != null)
 			{
+				OnAttacking?.Invoke();
 				_currentWeapon.Attack();
 			}
+			//}
 		}
 	}
 }
