@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CameraDescriptor
   m_EditorClassIdentifier: 
   CameraPrefab: {fileID: 3651789395323327701, guid: cacbce26b523bd0459c80e75c0b525a6, type: 3}
-  CameraOffset: {x: 0, y: 20, z: 0}
+  CameraOffset: {x: 0, y: 15, z: 0}
   CameraRotation: {x: 0.70710677, y: 0, z: 0, w: 0.70710677}

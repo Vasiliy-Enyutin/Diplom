@@ -99,7 +99,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerGfxTransform: {fileID: 7511736502166660050}
-  _mainCamera: {fileID: 0}
 --- !u!114 &1583729817497885904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 6588010378104332142}
+  _playerGfxTransform: {fileID: 7511736502166660050}
 --- !u!114 &867479029609732072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,7 +291,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7406309965169571194
 Transform:
   m_ObjectHideFlags: 0
@@ -376,6 +376,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3480526388593156731}
     m_Modifications:
+    - target: {fileID: 1138263812268023938, guid: 49255f1b918a6964b80584fba5d1f622, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7e592ea8b0bbddf46a4104c8b70a24f0, type: 2}
+    - target: {fileID: 2963518818390100852, guid: 49255f1b918a6964b80584fba5d1f622, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 079e994d08bc36f4cafc584dcb5fb51d, type: 2}
+    - target: {fileID: 6591057451033106298, guid: 49255f1b918a6964b80584fba5d1f622, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8b67d18101af31a4c92fb41a79a6d8a1, type: 2}
     - target: {fileID: 6970866522130506239, guid: 49255f1b918a6964b80584fba5d1f622, type: 3}
       propertyPath: m_Name
       value: PlayerGFX
@@ -424,6 +436,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7802518598316999991, guid: 49255f1b918a6964b80584fba5d1f622, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7efaa18f58db7f843b36a38b48502514, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49255f1b918a6964b80584fba5d1f622, type: 3}
 --- !u!95 &6588010378104332142 stripped

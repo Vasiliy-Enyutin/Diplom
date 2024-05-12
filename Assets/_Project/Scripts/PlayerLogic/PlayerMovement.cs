@@ -10,12 +10,12 @@ namespace _Project.Scripts.PlayerLogic
         [SerializeField] 
         private Transform _playerGfxTransform;
         
-        private Camera _mainCamera;
-
         private PlayerDescriptor _playerDescriptor = null!;
         private InputService _inputService = null!;
         private Rigidbody _rigidbody = null!;
         private Vector3 _moveDirection;
+        
+        private Camera _mainCamera;
 
         private void Awake()
         {
@@ -73,6 +73,7 @@ namespace _Project.Scripts.PlayerLogic
                 if (direction.magnitude > 0.1f)
                 {
                     Quaternion targetRotation = Quaternion.LookRotation(direction);
+                    // transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
                     _playerGfxTransform.rotation = Quaternion.Slerp(_playerGfxTransform.rotation, targetRotation, Time.deltaTime * 10f);
                 }
             }

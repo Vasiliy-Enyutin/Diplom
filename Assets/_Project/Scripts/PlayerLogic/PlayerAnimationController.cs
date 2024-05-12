@@ -8,6 +8,8 @@ namespace _Project.Scripts.PlayerLogic
 	{
 		[SerializeField]
 		private Animator _animator = null!;
+		[SerializeField]
+		private Transform _playerGfxTransform;
 
 		private InputService _inputService;
 
@@ -23,31 +25,66 @@ namespace _Project.Scripts.PlayerLogic
 				return;
 			}
             
-			UpdateAnimation(_inputService.MoveDirection);
+			UpdateAnimation(_inputService.MoveDirection, _playerGfxTransform.forward);
 		}
-
-		private void UpdateAnimation(Vector3 moveDirection)
+		
+		private void UpdateAnimation(Vector3 moveDirection, Vector3 facingDirection)
 		{
 			if (moveDirection == Vector3.zero)
 			{
 				_animator.Play("Idle");
 			}
-			else if (moveDirection.x > 0 || (moveDirection.x > 0 && moveDirection.y > 0) || (moveDirection.x > 0 && moveDirection.y < 0))
-			{
-				_animator.Play("RunRight");
-			}
-			else if (moveDirection.x < 0 || (moveDirection.x < 0 && moveDirection.y > 0) || (moveDirection.x < 0 && moveDirection.y < 0))
-			{
-				_animator.Play("RunLeft");
-			}
-			else if (moveDirection.z < 0)
-			{
-				_animator.Play("RunBackwards");
-			}
 			else
 			{
-				_animator.Play("RunForward");
+				Vector3 relativeDirection = Quaternion.Inverse(Quaternion.LookRotation(facingDirection)) * moveDirection;
+
+				if (Mathf.Abs(relativeDirection.x) > Mathf.Abs(relativeDirection.z))
+				{
+					if (relativeDirection.x > 0.5f)
+					{
+						_animator.Play("RunRight");
+					}
+					else if (relativeDirection.x < -0.5f)
+					{
+						_animator.Play("RunLeft");
+					}
+				}
+				else
+				{
+					if (relativeDirection.z > 0.5f)
+					{
+						_animator.Play("RunForward");
+					}
+					else if (relativeDirection.z < -0.5f)
+					{
+						_animator.Play("RunBackwards");
+					}
+				}
 			}
 		}
+
+		// private void UpdateAnimation(Vector3 moveDirection)
+		// {
+		// 	if (moveDirection == Vector3.zero)
+		// 	{
+		// 		_animator.Play("Idle");
+		// 	}
+		// 	else if (moveDirection.x > 0 || (moveDirection.x > 0 && moveDirection.y > 0) || (moveDirection.x > 0 && moveDirection.y < 0))
+		// 	{
+		// 		_animator.Play("RunRight");
+		// 	}
+		// 	else if (moveDirection.x < 0 || (moveDirection.x < 0 && moveDirection.y > 0) || (moveDirection.x < 0 && moveDirection.y < 0))
+		// 	{
+		// 		_animator.Play("RunLeft");
+		// 	}
+		// 	else if (moveDirection.z < 0)
+		// 	{
+		// 		_animator.Play("RunBackwards");
+		// 	}
+		// 	else
+		// 	{
+		// 		_animator.Play("RunForward");
+		// 	}
+		// }
 	}
 }
