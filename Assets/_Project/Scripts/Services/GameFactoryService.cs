@@ -2,7 +2,9 @@ using System.Collections.Generic;
 using _Project.Scripts.Descriptors;
 using _Project.Scripts.EnemyLogic;
 using _Project.Scripts.PlayerLogic;
+using Cinemachine;
 using JetBrains.Annotations;
+using UnityEngine;
 using Zenject;
 using Object = UnityEngine.Object;
 
@@ -15,6 +17,8 @@ namespace _Project.Scripts.Services
 		private AssetProviderService _assetProviderService = null!;
 		[Inject]
 		private PlayerDescriptor _playerDescriptor = null!;
+		[Inject]
+		private CameraDescriptor _cameraDescriptor = null!;
 		[Inject]
 		private LocationDescriptor _locationDescriptor = null!;
 		[Inject]
@@ -30,6 +34,19 @@ namespace _Project.Scripts.Services
 		{
 			Player = _assetProviderService.CreateAsset<Player>(_playerDescriptor.Prefab, _locationDescriptor.InitialPlayerPositionPoint);
 			Player.Init(_playerDescriptor, _inputService);
+		}
+
+		public void CreateCamera()
+		{
+			CinemachineVirtualCamera virtualCamera =
+				_assetProviderService.CreateAsset<CinemachineVirtualCamera>(_cameraDescriptor.CameraPrefab,
+					_locationDescriptor.InitialPlayerPositionPoint);
+			
+			virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = _cameraDescriptor.CameraOffset;
+			virtualCamera.transform.rotation = _cameraDescriptor.CameraRotation;
+			Transform target = Player.transform;
+			virtualCamera.Follow = target;
+			virtualCamera.LookAt = target;
 		}
 
 		public void CreateEnemies()

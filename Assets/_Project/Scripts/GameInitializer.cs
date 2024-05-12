@@ -14,6 +14,7 @@ namespace _Project.Scripts
 		private void Awake()
 		{
 			_gameFactoryService.CreatePlayer();
+			_gameFactoryService.CreateCamera();
 			_gameFactoryService.CreateEnemies();
 			FindObjectOfType<NavMeshSurface>().BuildNavMesh();
 		}

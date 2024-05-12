@@ -10,7 +10,7 @@ namespace _Project.Scripts.PlayerLogic
         [SerializeField] 
         private Transform _playerGfxTransform;
         
-        private CinemachineBrain  _cinemachineBrain;
+        private Camera _mainCamera;
 
         private PlayerDescriptor _playerDescriptor = null!;
         private InputService _inputService = null!;
@@ -20,7 +20,7 @@ namespace _Project.Scripts.PlayerLogic
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            _cinemachineBrain = FindObjectOfType<CinemachineBrain>();
+            _mainCamera = FindObjectOfType<CinemachineBrain>().GetComponent<Camera>();
         }
 
         private void Start()
@@ -55,27 +55,27 @@ namespace _Project.Scripts.PlayerLogic
 
         private void RotatePlayer()
         {
-	        if (_cinemachineBrain == null || _cinemachineBrain.ActiveVirtualCamera == null)
-	        {
-		        return;
-	        }
-
-	        Camera camera = _cinemachineBrain.ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<Camera>();
-	        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-	        Plane plane = new Plane(Vector3.up, transform.position);
-
-	        if (plane.Raycast(ray, out float distance))
-	        {
-		        Vector3 targetPoint = ray.GetPoint(distance);
-		        Vector3 direction = targetPoint - transform.position;
-		        direction.y = 0f;
-
-		        if (direction.magnitude > 0.1f)
-		        {
-			        Quaternion targetRotation = Quaternion.LookRotation(direction);
-			        _playerGfxTransform.rotation = Quaternion.Slerp(_playerGfxTransform.rotation, targetRotation, Time.deltaTime * 10f);
-		        }
-	        }
+            if (_mainCamera == null)
+            {
+                Debug.Log("Main Camera is missing");
+                return;
+            }
+        
+            Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+            Plane plane = new(Vector3.up, transform.position);
+        
+            if (plane.Raycast(ray, out float distance))
+            {
+                Vector3 targetPoint = ray.GetPoint(distance);
+                Vector3 direction = targetPoint - transform.position;
+                direction.y = 0f;
+        
+                if (direction.magnitude > 0.1f)
+                {
+                    Quaternion targetRotation = Quaternion.LookRotation(direction);
+                    _playerGfxTransform.rotation = Quaternion.Slerp(_playerGfxTransform.rotation, targetRotation, Time.deltaTime * 10f);
+                }
+            }
         }
     }
 }

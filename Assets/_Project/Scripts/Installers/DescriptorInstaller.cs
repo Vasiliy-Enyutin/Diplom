@@ -10,6 +10,8 @@ namespace _Project.Scripts.Installers
 		[SerializeField]
 		private PlayerDescriptor _playerDescriptor = null!;
 		[SerializeField]
+		private CameraDescriptor _cameraDescriptor = null!;
+		[SerializeField]
 		private LocationDescriptor _locationDescriptor = null!;
 		[SerializeField] 
 		private EnemyDescriptor _enemyDescriptor;
@@ -19,6 +21,7 @@ namespace _Project.Scripts.Installers
 		public override void InstallBindings()
 		{
 			Container.BindInstance(_playerDescriptor).AsSingle();
+			Container.BindInstance(_cameraDescriptor).AsSingle();
 			Container.BindInstance(_locationDescriptor).AsSingle();
 			Container.BindInstance(_enemyDescriptor).AsSingle();
 			Container.BindInstance(_uiDescriptor).AsSingle();
