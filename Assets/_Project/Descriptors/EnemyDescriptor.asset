@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd2b82fbbebfed64ea29cd137d1c134c, type: 3}
   m_Name: EnemyDescriptor
   m_EditorClassIdentifier: 
-  Enemy: {fileID: -2803342004414049443, guid: 153da5451e4c3b54bbdbc67260faa546, type: 3}
+  Enemy: {fileID: 5938040036998107608, guid: 153da5451e4c3b54bbdbc67260faa546, type: 3}
+  Health: 100
   EnemiesNumber: 5
-  MoveSpeed: 3
+  MoveSpeed: 3.5
   PursuitDistance: 5

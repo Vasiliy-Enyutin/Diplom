@@ -54,7 +54,7 @@ namespace _Project.Scripts.Services
 			for (int i = 0; i < _enemyDescriptor.EnemiesNumber; i++)
 			{
 				Enemy enemy = _assetProviderService.CreateAsset<Enemy>(_enemyDescriptor.Enemy, _locationDescriptor.InitialEnemyPositionPoint);
-				enemy.Init(Player.gameObject, _enemyDescriptor.MoveSpeed, _enemyDescriptor.PursuitDistance);
+				enemy.Init(Player.gameObject, _enemyDescriptor);
 				Enemies.Add(enemy);
 			}
 		}

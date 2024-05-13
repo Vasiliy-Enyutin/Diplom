@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7332177530921828953}
   - component: {fileID: 5214685575240883135}
   - component: {fileID: 1220043327482961421}
+  - component: {fileID: 5938040036998107608}
   - component: {fileID: -2803342004414049443}
   - component: {fileID: 6222070061958757922}
   - component: {fileID: 7114316728818243886}
@@ -55,7 +56,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 4
   m_CollisionDetection: 0
 --- !u!136 &7332177530921828953
 CapsuleCollider:
@@ -107,6 +108,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5938040036998107608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7332177530921828952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5731ac1769364a25ac2465003129c38b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-2803342004414049443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,7 +129,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7332177530921828952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea60d0e5c33cc3a4f8c1dc46530b3903, type: 3}
+  m_Script: {fileID: 11500000, guid: 02b7df10bedc43b08230f419cd658a6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &6222070061958757922
@@ -144,7 +157,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 787421713180251012}
-  _agent: {fileID: 1220043327482961421}
 --- !u!114 &437760234468287384
 MonoBehaviour:
   m_ObjectHideFlags: 0

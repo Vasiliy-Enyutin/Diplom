@@ -11,6 +11,7 @@ namespace _Project.Scripts.Descriptors
 		public float Range;
 		public int Damage;
 		public float ReloadSpeed;
+		public float AttackDuration;
 		public GameObject WeaponPrefab;
 	}
 }

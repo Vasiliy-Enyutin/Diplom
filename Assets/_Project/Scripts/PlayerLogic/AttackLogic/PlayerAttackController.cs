@@ -30,15 +30,15 @@ namespace _Project.Scripts.PlayerLogic.AttackLogic
 		}
 
 		private void OnAttackButtonPressed()
-		{
-			// if _currentWeapon.IsReadyToAttack
-			//{
-			if (_currentWeapon != null)
+		{ 
+			if (_currentWeapon.IsReadyToAttack)
 			{
-				OnAttacking?.Invoke();
-				_currentWeapon.Attack();
+				if (_currentWeapon != null)
+				{
+					OnAttacking?.Invoke();
+					_currentWeapon.Attack();
+				}
 			}
-			//}
 		}
 	}
 }

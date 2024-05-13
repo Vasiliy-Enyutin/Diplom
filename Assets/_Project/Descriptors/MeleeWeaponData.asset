@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponName: Axe
   WeaponType: 0
-  Range: 1
+  Range: 0
   Damage: 25
-  ReloadSpeed: 0.5
+  ReloadSpeed: 2
+  AttackDuration: 0.5
   WeaponPrefab: {fileID: 1404118600022960193, guid: beba9e41050eea149a40b49e48f538ff, type: 3}

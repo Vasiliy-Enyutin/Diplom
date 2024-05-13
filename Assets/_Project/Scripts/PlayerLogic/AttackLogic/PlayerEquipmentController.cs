@@ -51,7 +51,7 @@ namespace _Project.Scripts.PlayerLogic.AttackLogic
 
 			        GameObject weaponObject = Instantiate(weaponData.WeaponPrefab, spawnPoint);
 			        WeaponBase weapon = weaponObject.GetComponent<WeaponBase>();
-			        weapon.SetWeaponData(weaponData);
+			        weapon.Init(weaponData);
 			        weapon.gameObject.SetActive(false);
 			        _weapons.Add(weapon);
 		        }

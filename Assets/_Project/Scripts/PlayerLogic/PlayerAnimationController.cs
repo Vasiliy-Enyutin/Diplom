@@ -55,7 +55,6 @@ namespace _Project.Scripts.PlayerLogic
         private void UpdateAnimation(Vector3 moveDirection, Vector3 facingDirection)
         {
 	        currentWeaponPrefix = _attackController.CurrentWeaponType == WeaponType.Melee ? "Melee" : "Ranged";
-	        Debug.Log(_isAttacking);
 
 	        if (_isAttacking)
 	        {

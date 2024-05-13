@@ -7,6 +7,7 @@ namespace _Project.Scripts.Descriptors
     public class EnemyDescriptor : ScriptableObject
     {
         public Enemy Enemy;
+        public int Health;
         public int EnemiesNumber;
         public float MoveSpeed;
         public float PursuitDistance;
