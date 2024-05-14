@@ -18,8 +18,12 @@ namespace _Project.Scripts
 
         private void Awake()
         {
-            // Cursor.visible = false;
-            Application.targetFrameRate = 60;
+	        Application.targetFrameRate = 60;
+
+            _gameFactoryService.CreatePlayer();
+            _gameFactoryService.CreateCamera();
+            _gameFactoryService.CreateEnemies();
+            FindObjectOfType<NavMeshSurface>().BuildNavMesh();
         }
 
         private void Start()

@@ -8,14 +8,14 @@ namespace _Project.Scripts.Installers
 	public class ServiceInstaller : MonoInstaller
 	{
 		[SerializeField]
-		private InputService inputServicePrefab = null!;
+		private InputService _inputServicePrefab = null!;
 		[SerializeField]
 		private UiManager _uiManager = null!;
 		
 		public override void InstallBindings()
 		{
 			Container.Bind<AssetProviderService>().AsSingle();
-			Container.Bind<InputService>().FromComponentInNewPrefab(inputServicePrefab).AsSingle();
+			Container.Bind<InputService>().FromComponentInNewPrefab(_inputServicePrefab).AsSingle();
 			Container.Bind<UiManager>().FromComponentInNewPrefab(_uiManager).AsSingle();
 			Container.Bind<GameFactoryService>().AsSingle();
 		}
