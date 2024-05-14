@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponName: Rifle
   WeaponType: 1
-  Range: 10
+  Range: 20
   Damage: 100
   ReloadSpeed: 2
+  AttackDuration: 0
   WeaponPrefab: {fileID: 6178984338990868525, guid: e9e965d07c8edfc45ba3313c07ccd1a6, type: 3}

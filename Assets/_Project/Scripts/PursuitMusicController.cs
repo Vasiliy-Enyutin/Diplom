@@ -58,7 +58,7 @@ namespace _Project.Scripts
 
         private bool CheckEnemyPursuitState()
         {
-            return _gameFactoryService.Enemies != null && _gameFactoryService.Enemies.Any(enemy => enemy.IsPursuingPlayer);
+	        return _gameFactoryService.Enemies != null && _gameFactoryService.Enemies.Any(enemy => enemy.IsPursuingPlayer);
         }
 
         private void PlayPursuitMusic()

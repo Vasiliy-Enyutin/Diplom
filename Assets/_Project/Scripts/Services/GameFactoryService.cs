@@ -6,7 +6,6 @@ using Cinemachine;
 using JetBrains.Annotations;
 using UnityEngine;
 using Zenject;
-using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Services
 {
@@ -55,14 +54,14 @@ namespace _Project.Scripts.Services
 			{
 				Enemy enemy = _assetProviderService.CreateAsset<Enemy>(_enemyDescriptor.Enemy, _locationDescriptor.InitialEnemyPositionPoint);
 				enemy.Init(Player.gameObject, _enemyDescriptor);
+				enemy.OnEnemyDied += HandleEnemyDied;
 				Enemies.Add(enemy);
 			}
 		}
-		
-		public void ClearAll()
+
+		private void HandleEnemyDied(Enemy enemy)
 		{
-			Object.Destroy(Player.gameObject);
-			Enemies.ForEach(enemy => Object.Destroy(enemy.gameObject));
+			Enemies.Remove(enemy);
 		}
 	}
 }
