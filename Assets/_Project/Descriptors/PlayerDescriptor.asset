@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: PlayerDescriptor
   m_EditorClassIdentifier: 
   Prefab: {fileID: 5049951985513824092, guid: bd4173993958f14479601119aa1e708e, type: 3}
+  Health: 100
   MoveSpeed: 5
   WeaponDatabase: {fileID: 11400000, guid: 4098f0cbeb70fab4ca172392c0164425, type: 2}

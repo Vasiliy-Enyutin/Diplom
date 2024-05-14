@@ -26,7 +26,6 @@ namespace _Project.Scripts.EnemyLogic
 
 		public void TakeDamage(int damage)
 		{
-			Debug.Log($"Enemy take damage {damage}");
 			_health -= damage;
 			if (_health <= 0)
 			{

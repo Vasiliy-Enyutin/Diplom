@@ -7,6 +7,8 @@ namespace _Project.Scripts.PlayerLogic
 {
     public class Player : MonoBehaviour
     {
+	    private float _health;
+	    
 	    public event Action OnDestroy;
 
 	    public PlayerDescriptor PlayerDescriptor { get; private set; }
@@ -14,11 +16,23 @@ namespace _Project.Scripts.PlayerLogic
 
 	    public void Init(PlayerDescriptor playerDescriptor, InputService inputService)
 	    {
+		    _health = playerDescriptor.Health;
+		    
 		    PlayerDescriptor = playerDescriptor;
 		    InputService = inputService;
 	    }
-        
-        public void Die()
+
+	    public void TakeDamage(float damage)
+	    {
+		    _health -= damage;
+
+		    if (_health <= 0)
+		    {
+			    Die();
+		    }
+	    }
+
+	    private void Die()
         {
             OnDestroy?.Invoke();
             Destroy(gameObject);

@@ -11,5 +11,8 @@ namespace _Project.Scripts.Descriptors
         public int EnemiesNumber;
         public float MoveSpeed;
         public float PursuitDistance;
+        public float Damage;
+        public float AttackDuration;
+        public float ReloadSpeed;
     }
 }

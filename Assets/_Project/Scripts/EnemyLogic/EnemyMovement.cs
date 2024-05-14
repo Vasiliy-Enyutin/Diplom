@@ -10,7 +10,9 @@ namespace _Project.Scripts.EnemyLogic
 		private float _pursuitDistance;
 
 		private NavMeshAgent _agent;
-		
+
+		public bool EnemyCanAttack { get; private set; } = false;
+
 		private void Start()
 		{
 			_enemy = GetComponent<Enemy>();
@@ -25,11 +27,21 @@ namespace _Project.Scripts.EnemyLogic
 		{
 			if (_agent.enabled == false || _player == null)
 			{
+				EnemyCanAttack = false;
 				_enemy.IsPursuingPlayer = false;
 				return;
 			}
 
+			CheckForCanAttack();
 			UpdatePath();
+		}
+
+		private void CheckForCanAttack()
+		{
+			if (_agent.remainingDistance <= _agent.stoppingDistance && _agent.remainingDistance != 0)
+			{
+				EnemyCanAttack = true;
+			}
 		}
 
 		private void UpdatePath()
