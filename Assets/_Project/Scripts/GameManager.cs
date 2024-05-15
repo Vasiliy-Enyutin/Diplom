@@ -1,3 +1,4 @@
+using System.Collections;
 using _Project.Scripts.PlayerLogic;
 using _Project.Scripts.Services;
 using _Project.Scripts.UI;
@@ -20,10 +21,13 @@ namespace _Project.Scripts
         {
 	        Application.targetFrameRate = 60;
 
+	        _gameFactoryService.CreateMainBuilding();
             _gameFactoryService.CreatePlayer();
             _gameFactoryService.CreateCamera();
             _gameFactoryService.CreateEnemies();
-            FindObjectOfType<NavMeshSurface>().BuildNavMesh();
+            NavMeshSurface ground = FindObjectOfType<NavMeshSurface>();
+            Debug.Log(ground);
+            ground.BuildNavMesh();
         }
 
         private void Start()

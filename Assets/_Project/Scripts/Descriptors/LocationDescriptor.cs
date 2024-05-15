@@ -7,5 +7,6 @@ namespace _Project.Scripts.Descriptors
 	{
 		public Vector3 InitialPlayerPositionPoint;
 		public Vector3 InitialEnemyPositionPoint;
+		public Vector3 InitialMainBuildingPositionPoint;
 	}
 }

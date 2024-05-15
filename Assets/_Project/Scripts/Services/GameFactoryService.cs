@@ -21,6 +21,8 @@ namespace _Project.Scripts.Services
 		[Inject]
 		private LocationDescriptor _locationDescriptor = null!;
 		[Inject]
+		private MainBuildingDescriptor _mainBuildingDescriptor = null!;
+		[Inject]
 		private EnemyDescriptor _enemyDescriptor;
 		[Inject]
 		private InputService _inputService;
@@ -28,6 +30,13 @@ namespace _Project.Scripts.Services
 		public Player Player { get; private set; }
 
 		public List<Enemy> Enemies { get; } = new();
+
+		public void CreateMainBuilding()
+		{
+			MainBuilding mainBuilding = _assetProviderService.CreateAsset<MainBuilding>(_mainBuildingDescriptor.Prefab,
+				_locationDescriptor.InitialMainBuildingPositionPoint);
+			mainBuilding.Init(_mainBuildingDescriptor);
+		}
 
 		public void CreatePlayer()
 		{

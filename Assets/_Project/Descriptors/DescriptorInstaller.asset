@@ -15,5 +15,6 @@ MonoBehaviour:
   _playerDescriptor: {fileID: 11400000, guid: 433d9d0fb750bb34ca9f3a506dc30d97, type: 2}
   _cameraDescriptor: {fileID: 11400000, guid: df2f4946c71642d4db15c8ca118bc7ab, type: 2}
   _locationDescriptor: {fileID: 11400000, guid: 77204ea96d0234c4983495cf2a17359a, type: 2}
+  _mainBuildingDescriptor: {fileID: 11400000, guid: 06da673055213e24fbd048078b1eaad4, type: 2}
   _enemyDescriptor: {fileID: 11400000, guid: 56d6599e8d352b9468640ba45fcca366, type: 2}
   _uiDescriptor: {fileID: 11400000, guid: 1825863016a2cc04d897ce326fa99a27, type: 2}

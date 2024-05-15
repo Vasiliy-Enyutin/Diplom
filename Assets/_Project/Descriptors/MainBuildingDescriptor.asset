@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efd5b1b58a6e426ba021a89641bcf6c2, type: 3}
-  m_Name: LocationDescriptor
+  m_Script: {fileID: 11500000, guid: 53e6ccfdc53d40bdb38efda53c7e89ce, type: 3}
+  m_Name: MainBuildingDescriptor
   m_EditorClassIdentifier: 
-  InitialPlayerPositionPoint: {x: 5, y: 0, z: 0}
-  InitialEnemyPositionPoint: {x: 5, y: 0, z: 7}
+  Prefab: {fileID: -755643525963007150, guid: 70979486cfbc95a448556f878bcf63c0, type: 3}
+  Health: 300

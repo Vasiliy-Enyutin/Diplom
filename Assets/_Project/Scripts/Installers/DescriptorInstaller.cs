@@ -14,6 +14,8 @@ namespace _Project.Scripts.Installers
 		[SerializeField]
 		private LocationDescriptor _locationDescriptor = null!;
 		[SerializeField] 
+		private MainBuildingDescriptor _mainBuildingDescriptor;
+		[SerializeField] 
 		private EnemyDescriptor _enemyDescriptor;
 		[SerializeField]
 		private UiDescriptor _uiDescriptor;
@@ -23,6 +25,7 @@ namespace _Project.Scripts.Installers
 			Container.BindInstance(_playerDescriptor).AsSingle();
 			Container.BindInstance(_cameraDescriptor).AsSingle();
 			Container.BindInstance(_locationDescriptor).AsSingle();
+			Container.BindInstance(_mainBuildingDescriptor).AsSingle();
 			Container.BindInstance(_enemyDescriptor).AsSingle();
 			Container.BindInstance(_uiDescriptor).AsSingle();
 		}
