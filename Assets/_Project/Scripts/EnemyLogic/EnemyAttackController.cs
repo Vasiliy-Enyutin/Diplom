@@ -40,10 +40,19 @@ namespace _Project.Scripts.EnemyLogic
 			}
 		}
 
+		private void OnTriggerEnter(Collider other)
+		{
+			if (other.TryGetComponent(out Player player))
+			{
+				player.TakeDamage(_damage);
+			}
+		}
+
 		private void PerformAttack()
 		{
 			StartCoroutine(ReloadRoutine());
 			StartCoroutine(TemporarilyEnableColliderRoutine());
+			StartCoroutine(TemporarilyDisableMovementRoutine());
 		}
 
 		private IEnumerator ReloadRoutine()
@@ -55,19 +64,16 @@ namespace _Project.Scripts.EnemyLogic
 
 		private IEnumerator TemporarilyEnableColliderRoutine()
 		{
-			Debug.Log("CHECK_1");
 			_weaponCollider.enabled = true;
 			yield return new WaitForSeconds(_attackDuration);
 			_weaponCollider.enabled = false;
-			Debug.Log("CHECK_2");
 		}
-		
-		private void OnTriggerEnter(Collider other)
+
+		private IEnumerator TemporarilyDisableMovementRoutine()
 		{
-			if (other.TryGetComponent(out Player player))
-			{
-				player.TakeDamage(_damage);
-			}
+			_enemyMovement.AgentSetActive(false);
+			yield return new WaitForSeconds(_attackDuration);
+			_enemyMovement.AgentSetActive(true);
 		}
 	}
 }

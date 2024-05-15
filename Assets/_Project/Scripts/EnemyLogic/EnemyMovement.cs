@@ -26,16 +26,21 @@ namespace _Project.Scripts.EnemyLogic
 
 		private void Update()
 		{
+			RotateTowardsPlayer();
+
 			if (_agent.enabled == false || _player == null)
 			{
-				EnemyCanAttack = false;
 				_enemy.IsPursuingPlayer = false;
 				return;
 			}
 
 			UpdatePath();
 			CheckForCanAttack();
-			RotateTowardsPlayer();
+		}
+
+		public void AgentSetActive(bool active)
+		{
+			_agent.enabled = active;
 		}
 
 		private void CheckForCanAttack()
