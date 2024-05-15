@@ -14,14 +14,12 @@ namespace _Project.Scripts.EnemyLogic
         private NavMeshAgent _agent = null!;
         private EnemyAttackController _attackController = null!;
         private bool _isAttacking;
-        private static readonly int AttackHash = Animator.StringToHash("Attack");
-        private static readonly int RunHash = Animator.StringToHash("Run");
-        private static readonly int IdleHash = Animator.StringToHash("Idle");
 
-        private void Awake()
-        {
-            _agent = GetComponent<NavMeshAgent>();
-        }
+        private static readonly int IsRunning = Animator.StringToHash("IsRunning");
+        private static readonly int IsAttacking = Animator.StringToHash("IsAttacking");
+        private static readonly int IsIdle = Animator.StringToHash("IsIdle");
+        
+        private static readonly int AttackTrigger = Animator.StringToHash("OnAttackTrigger");
 
         private void Start()
         {
@@ -30,52 +28,51 @@ namespace _Project.Scripts.EnemyLogic
 
             _animationLifetimeHelper.OnAttackAnimationEnd += OnAttackAnimationEnd;
             _attackController.OnAttacking += HandleAttacking;
-            
-            if (_agent == null)
-            {
-	            return;
-            }
-
-            UpdateAnimation(_agent.velocity);
         }
 
-        // private void Update()
-        // {
-        //     if (_agent == null)
-        //     {
-        //         return;
-        //     }
-        //
-        //     UpdateAnimation(_agent.velocity);
-        // }
+        private void Update()
+        {
+	        if (_agent == null)
+	        {
+		        return;
+	        }
+
+	        if (!_isAttacking)
+	        {
+		        UpdateAnimation(_agent.velocity);
+	        }
+        }
 
         private void UpdateAnimation(Vector3 agentVelocity)
         {
-            if (_isAttacking)
-            {
-                return;
-            }
-
-            if (agentVelocity == Vector3.zero)
-            {
-                _animator.CrossFade(IdleHash, 0.1f);
-            }
-            else
-            {
-                _animator.CrossFade(RunHash, 0.1f);
-            }
+	        if (agentVelocity.magnitude <= Mathf.Epsilon)
+	        {
+		        _animator.SetBool(IsRunning, false);
+		        _animator.SetBool(IsIdle, true);
+		        _animator.SetBool(IsAttacking, false);
+	        }
+	        else
+	        {
+		        _animator.SetBool(IsRunning, true);
+		        _animator.SetBool(IsIdle, false);
+		        _animator.SetBool(IsAttacking, false);
+	        }
         }
 
         private void HandleAttacking()
         {
-            _isAttacking = true;
-            _animator.CrossFade(AttackHash, 0.1f);
+	        _isAttacking = true;
+	        _animator.SetBool(IsAttacking, true);
+	        _animator.SetTrigger(AttackTrigger);
+
+	        _animator.SetBool(IsRunning, false);
+	        _animator.SetBool(IsIdle, false);
         }
 
         private void OnAttackAnimationEnd()
         {
-            _isAttacking = false;
-            UpdateAnimation(_agent.velocity);
+	        _isAttacking = false;
+	        _animator.SetBool(IsAttacking, false);
         }
     }
 }

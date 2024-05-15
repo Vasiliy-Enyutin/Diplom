@@ -5,12 +5,22 @@ namespace _Project.Scripts.EnemyLogic
 {
     public class EnemyCollisionDetector : MonoBehaviour
     {
-        private void OnTriggerEnter(Collider other)
+	    public bool IsCollidesWithPlayer { get; private set; } = false;
+	    
+        private void OnTriggerStay(Collider other)
         {
             if (other.TryGetComponent(out Player player))
             {
-                player.Die();
+	            IsCollidesWithPlayer = true;
             }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+	        if (other.TryGetComponent(out Player player))
+	        {
+		        IsCollidesWithPlayer = false;
+	        }
         }
     }
 }
