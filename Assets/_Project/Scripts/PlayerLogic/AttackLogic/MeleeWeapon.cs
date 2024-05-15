@@ -21,7 +21,6 @@ namespace _Project.Scripts.PlayerLogic.AttackLogic
 		{
 			_damagedEnemies.Clear();
 			StartCoroutine(TemporarilyEnableCollider());
-			Debug.Log($"Melee Attack: {_weaponData.WeaponName} - Damage: {_weaponData.Damage}");
 		}
 
 		private IEnumerator TemporarilyEnableCollider()

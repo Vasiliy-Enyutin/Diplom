@@ -17,6 +17,6 @@ MonoBehaviour:
   EnemiesNumber: 1
   MoveSpeed: 3.5
   PursuitDistance: 5
-  Damage: 50
-  AttackDuration: 0.5
-  ReloadSpeed: 2
+  Damage: 25
+  AttackDuration: 2
+  ReloadSpeed: 7

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using _Project.Scripts.Descriptors;
 using _Project.Scripts.PlayerLogic;
 using UnityEngine;
@@ -10,6 +11,8 @@ namespace _Project.Scripts.EnemyLogic
 		[SerializeField]
 		private SphereCollider _weaponCollider;
 
+		public event Action OnAttacking;
+		
 		private EnemyMovement _enemyMovement;
 
 		private float _damage;
@@ -19,6 +22,7 @@ namespace _Project.Scripts.EnemyLogic
 
 		private void Start()
 		{
+			_weaponCollider.enabled = false;
 			_enemyMovement = GetComponent<EnemyMovement>();
 			EnemyDescriptor enemyDescriptor = GetComponent<Enemy>().EnemyDescriptor;
 			_damage = enemyDescriptor.Damage;
@@ -28,16 +32,16 @@ namespace _Project.Scripts.EnemyLogic
 
 		private void Update()
 		{
+			
 			if (_enemyMovement.EnemyCanAttack && _isReadyToAttack)
 			{
-				// TODO attack anim
+				OnAttacking?.Invoke();
 				PerformAttack();
 			}
 		}
 
 		private void PerformAttack()
 		{
-			Debug.Log("Attack enemy");
 			StartCoroutine(ReloadRoutine());
 			StartCoroutine(TemporarilyEnableColliderRoutine());
 		}
@@ -51,9 +55,11 @@ namespace _Project.Scripts.EnemyLogic
 
 		private IEnumerator TemporarilyEnableColliderRoutine()
 		{
+			Debug.Log("CHECK_1");
 			_weaponCollider.enabled = true;
 			yield return new WaitForSeconds(_attackDuration);
 			_weaponCollider.enabled = false;
+			Debug.Log("CHECK_2");
 		}
 		
 		private void OnTriggerEnter(Collider other)
@@ -63,38 +69,5 @@ namespace _Project.Scripts.EnemyLogic
 				player.TakeDamage(_damage);
 			}
 		}
-		// private WeaponBase _currentWeapon;
-		//
-		// public event Action OnAttacking;
-		//
-		// public WeaponType CurrentWeaponType => _currentWeapon.WeaponType;
-		//
-		// private void Start()
-		// {
-		// 	_inputService = GetComponent<Player>().InputService;
-		// 	_inputService.AttackButtonPressed += OnAttackButtonPressed;
-		// }
-		//
-		// private void OnDestroy()
-		// {
-		// 	_inputService.AttackButtonPressed -= OnAttackButtonPressed;
-		// }
-		//
-		// public void SetWeapon(WeaponBase weapon)
-		// {
-		// 	_currentWeapon = weapon;
-		// }
-
-		// private void OnAttackButtonPressed()
-		// { 
-		// 	if (_currentWeapon.IsReadyToAttack)
-		// 	{
-		// 		if (_currentWeapon != null)
-		// 		{
-		// 			OnAttacking?.Invoke();
-		// 			_currentWeapon.Attack();
-		// 		}
-		// 	}
-		// }
 	}
 }

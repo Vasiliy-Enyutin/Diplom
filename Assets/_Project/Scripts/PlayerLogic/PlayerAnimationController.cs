@@ -49,13 +49,12 @@ namespace _Project.Scripts.PlayerLogic
                 return;
             }
 
+            currentWeaponPrefix = _attackController.CurrentWeaponType == WeaponType.Melee ? "Melee" : "Ranged";
             UpdateAnimation(_inputService.MoveDirection, _playerGfxTransform.forward);
         }
 
         private void UpdateAnimation(Vector3 moveDirection, Vector3 facingDirection)
         {
-	        currentWeaponPrefix = _attackController.CurrentWeaponType == WeaponType.Melee ? "Melee" : "Ranged";
-
 	        if (_isAttacking)
 	        {
 		        return;

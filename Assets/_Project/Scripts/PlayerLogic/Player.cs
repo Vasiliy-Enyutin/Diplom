@@ -24,6 +24,7 @@ namespace _Project.Scripts.PlayerLogic
 
 	    public void TakeDamage(float damage)
 	    {
+		    Debug.Log("Player get hit. Damage: " + damage);
 		    _health -= damage;
 
 		    if (_health <= 0)

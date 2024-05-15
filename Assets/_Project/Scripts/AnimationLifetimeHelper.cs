@@ -1,7 +1,7 @@
 using Unity.Plastic.Newtonsoft.Json.Serialization;
 using UnityEngine;
 
-namespace _Project.Scripts.PlayerLogic
+namespace _Project.Scripts
 {
 	public class AnimationLifetimeHelper : MonoBehaviour
 	{

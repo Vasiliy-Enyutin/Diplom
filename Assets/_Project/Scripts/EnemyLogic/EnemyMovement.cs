@@ -10,6 +10,7 @@ namespace _Project.Scripts.EnemyLogic
 		private float _pursuitDistance;
 
 		private NavMeshAgent _agent;
+		private float _distanceToPlayer;
 
 		public bool EnemyCanAttack { get; private set; } = false;
 
@@ -32,15 +33,20 @@ namespace _Project.Scripts.EnemyLogic
 				return;
 			}
 
-			CheckForCanAttack();
 			UpdatePath();
+			CheckForCanAttack();
+			RotateTowardsPlayer();
 		}
 
 		private void CheckForCanAttack()
 		{
-			if (_agent.remainingDistance <= _agent.stoppingDistance && _agent.remainingDistance != 0)
+			if (_agent.remainingDistance <= _agent.stoppingDistance && _distanceToPlayer < _pursuitDistance)
 			{
 				EnemyCanAttack = true;
+			}
+			else
+			{
+				EnemyCanAttack = false;
 			}
 		}
 
@@ -51,14 +57,14 @@ namespace _Project.Scripts.EnemyLogic
 			{
 				if (path.status == NavMeshPathStatus.PathComplete)
 				{
-					float distanceToPlayer = 0;
+					_distanceToPlayer = 0f;
 					Vector3[] corners = path.corners;
 					for (int i = 0; i < corners.Length - 1; ++i)
 					{
-						distanceToPlayer += Vector3.Distance(corners[i], corners[i + 1]);
+						_distanceToPlayer += Vector3.Distance(corners[i], corners[i + 1]);
 					}
 
-					if (distanceToPlayer < _pursuitDistance)
+					if (_distanceToPlayer < _pursuitDistance)
 					{
 						_enemy.IsPursuingPlayer = true;
 						_agent.SetPath(path);
@@ -68,6 +74,16 @@ namespace _Project.Scripts.EnemyLogic
 						_enemy.IsPursuingPlayer = false;
 					}
 				}
+			}
+		}
+		
+		private void RotateTowardsPlayer()
+		{
+			if (EnemyCanAttack)
+			{
+				Vector3 direction = (_player.transform.position - transform.position).normalized;
+				Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+				transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * _agent.angularSpeed);
 			}
 		}
 	}
