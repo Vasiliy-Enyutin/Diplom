@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3315714296393109856
 Transform:
@@ -100,7 +100,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2364243790871939078
 Transform:
@@ -178,12 +178,14 @@ GameObject:
   m_Component:
   - component: {fileID: 6419187236850804161}
   - component: {fileID: 2256188382494855856}
+  - component: {fileID: 484277418627341254}
+  - component: {fileID: 7416181904306041409}
   m_Layer: 0
   m_Name: PT_Fruit_Tree_01_apples
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6419187236850804161
 Transform:
@@ -230,6 +232,36 @@ LODGroup:
     renderers:
     - renderer: {fileID: 6038074568851490021}
   m_Enabled: 1
+--- !u!208 &484277418627341254
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5935278547815300987}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 2.5, y: 2.5, z: 2.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.1, y: 2.2, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!136 &7416181904306041409
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5935278547815300987}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.5
+  m_Height: 5
+  m_Direction: 1
+  m_Center: {x: -0.1, y: 2.2, z: 0}
 --- !u!1 &7513603357302551873
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +278,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2123385224588831687
 Transform:
