@@ -31,11 +31,13 @@ namespace _Project.Scripts.Services
 
 		public List<Enemy> Enemies { get; } = new();
 
+		private MainBuilding _mainBuilding;
+
 		public void CreateMainBuilding()
 		{
-			MainBuilding mainBuilding = _assetProviderService.CreateAsset<MainBuilding>(_mainBuildingDescriptor.Prefab,
+			_mainBuilding = _assetProviderService.CreateAsset<MainBuilding>(_mainBuildingDescriptor.Prefab,
 				_locationDescriptor.InitialMainBuildingPositionPoint);
-			mainBuilding.Init(_mainBuildingDescriptor);
+			_mainBuilding.Init(_mainBuildingDescriptor);
 		}
 
 		public void CreatePlayer()
@@ -62,7 +64,7 @@ namespace _Project.Scripts.Services
 			for (int i = 0; i < _enemyDescriptor.EnemiesNumber; i++)
 			{
 				Enemy enemy = _assetProviderService.CreateAsset<Enemy>(_enemyDescriptor.Enemy, _locationDescriptor.InitialEnemyPositionPoint);
-				enemy.Init(Player.gameObject, _enemyDescriptor);
+				enemy.Init(Player.gameObject, _enemyDescriptor, _mainBuilding);
 				enemy.OnEnemyDied += HandleEnemyDied;
 				Enemies.Add(enemy);
 			}

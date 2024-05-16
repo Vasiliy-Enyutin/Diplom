@@ -18,9 +18,9 @@ namespace _Project.Scripts.PlayerLogic.AttackLogic
 
 			if (Physics.Raycast(_shootingPoint.position, _shootingPoint.up, out hit, _weaponData.Range))
 			{
-				if (hit.collider.TryGetComponent(out Enemy enemy))
+				if (hit.collider.TryGetComponent(out IDamageable damageable))
 				{
-					enemy.TakeDamage(_weaponData.Damage);
+					damageable.TakeDamage(_weaponData.Damage);
 				}
 				tracerEndPoint = hit.point;
 			}

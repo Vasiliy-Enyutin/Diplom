@@ -8,13 +8,13 @@ namespace _Project.Scripts.PlayerLogic.AttackLogic
 	public class MeleeWeapon : WeaponBase
 	{
 		private SphereCollider _weaponCollider;
-		private HashSet<Enemy> _damagedEnemies;
+		private HashSet<IDamageable> _damagedEnemies;
 
 		private void Awake()
 		{
 			_weaponCollider = GetComponent<SphereCollider>();
 			_weaponCollider.enabled = false;
-			_damagedEnemies = new HashSet<Enemy>();
+			_damagedEnemies = new HashSet<IDamageable>();
 		}
 
 		protected override void PerformAttack()
@@ -32,15 +32,15 @@ namespace _Project.Scripts.PlayerLogic.AttackLogic
 
 		private void OnTriggerEnter(Collider other)
 		{
-			if (other.TryGetComponent(out Enemy enemy))
+			if (other.TryGetComponent(out IDamageable damageable))
 			{
-				if (_damagedEnemies.Contains(enemy))
+				if (_damagedEnemies.Contains(damageable))
 				{
 					return;
 				}
 
-				_damagedEnemies.Add(enemy);
-				enemy.TakeDamage(_weaponData.Damage);
+				_damagedEnemies.Add(damageable);
+				damageable.TakeDamage(_weaponData.Damage);
 			}
 		}
 	}

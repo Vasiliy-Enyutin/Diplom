@@ -6,25 +6,28 @@ using UnityEngine.AI;
 namespace _Project.Scripts.EnemyLogic
 {
 	[RequireComponent(typeof(NavMeshAgent))]
-	public class Enemy : MonoBehaviour
+	public class Enemy : MonoBehaviour, IDamageable
 	{
-		private int _health;
+		private float _health;
 	    
 		public EnemyDescriptor EnemyDescriptor { get; private set; }
 		public GameObject Target { get; private set; }
+		
+		public MainBuilding MainBuilding { get; private set; }
 
 		public event Action<Enemy> OnEnemyDied;
 		
 		public bool IsPursuingPlayer { get; set; }
 		
-		public void Init(GameObject player, EnemyDescriptor enemyDescriptor)
+		public void Init(GameObject player, EnemyDescriptor enemyDescriptor, MainBuilding mainBuilding)
 		{
 			Target = player;
 			_health = enemyDescriptor.Health;
 			EnemyDescriptor = enemyDescriptor;
+			MainBuilding = mainBuilding;
 		}
 
-		public void TakeDamage(int damage)
+		public void TakeDamage(float damage)
 		{
 			_health -= damage;
 			if (_health <= 0)

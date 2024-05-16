@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.PlayerLogic
 {
-    public class Player : MonoBehaviour
+    public class Player : MonoBehaviour, IDamageable
     {
 	    private float _health;
 	    
@@ -26,7 +26,7 @@ namespace _Project.Scripts.PlayerLogic
 	    {
 		    Debug.Log("Player get hit. Damage: " + damage);
 		    _health -= damage;
-
+	    
 		    if (_health <= 0)
 		    {
 			    Die();

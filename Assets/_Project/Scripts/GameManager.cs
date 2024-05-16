@@ -26,7 +26,6 @@ namespace _Project.Scripts
             _gameFactoryService.CreateCamera();
             _gameFactoryService.CreateEnemies();
             NavMeshSurface ground = FindObjectOfType<NavMeshSurface>();
-            Debug.Log(ground);
             ground.BuildNavMesh();
         }
 

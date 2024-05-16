@@ -32,7 +32,6 @@ namespace _Project.Scripts.EnemyLogic
 
 		private void Update()
 		{
-			
 			if (_enemyMovement.EnemyCanAttack && _isReadyToAttack)
 			{
 				OnAttacking?.Invoke();
@@ -42,9 +41,9 @@ namespace _Project.Scripts.EnemyLogic
 
 		private void OnTriggerEnter(Collider other)
 		{
-			if (other.TryGetComponent(out Player player))
+			if (other.TryGetComponent(out IDamageable damageable))
 			{
-				player.TakeDamage(_damage);
+				damageable.TakeDamage(_damage);
 			}
 		}
 
