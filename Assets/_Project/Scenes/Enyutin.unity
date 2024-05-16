@@ -1316,7 +1316,7 @@ Transform:
   - {fileID: 1555469944}
   - {fileID: 1242423134}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &499220175
 PrefabInstance:
@@ -2216,7 +2216,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &876161651
 MonoBehaviour:
@@ -2821,7 +2821,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7787419328098984280, guid: 152f0f20e331d0346a6a15b245a5184e, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7787419328098984280, guid: 152f0f20e331d0346a6a15b245a5184e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3568,54 +3568,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1268050992877243359, guid: c7827efbbf7212f42803476ce3f9d082, type: 3}
   m_PrefabInstance: {fileID: 1279652311}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1403262297
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1403262299}
-  - component: {fileID: 1403262298}
-  m_Layer: 0
-  m_Name: LightingManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1403262298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1403262297}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ddbc100265225f44bf5fcfde441e6bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DirectionalLight: {fileID: 444509126}
-  Preset: {fileID: 11400000, guid: 055b3ec4017ba73429f61ef41c0614e3, type: 2}
-  TimeOfDay: 9
-  dayDurationInSeconds: 600
---- !u!4 &1403262299
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1403262297}
-  m_LocalRotation: {x: -0, y: -0, z: -0.0000000018626449, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1514500865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4000,7 +3952,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!114 &1603455034
 MonoBehaviour:
@@ -4119,6 +4071,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inputServicePrefab: {fileID: 8143843080792472803, guid: 1245d7334ad3ec74b8683be2473a674a, type: 3}
   _uiManager: {fileID: 640148083137886105, guid: 204475bc1c1966c4482469de99352082, type: 3}
+  _lightingManagerPrefab: {fileID: 234069665010871279, guid: 7f7d69ab25ad4eb4aac3e5baffad74f4, type: 3}
+  _pursuitMusicController: {fileID: 7946482040268797531, guid: 87c6d3227a0ce724ea61e42ace93ee83, type: 3}
 --- !u!114 &1605380671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4448,7 +4402,7 @@ Transform:
   - {fileID: 184950463}
   - {fileID: 2107083589}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1816019871
 PrefabInstance:
@@ -4634,7 +4588,7 @@ Transform:
   m_Children:
   - {fileID: 1035081240}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1921983039
 PrefabInstance:
@@ -5272,60 +5226,3 @@ Transform:
   m_Father: {fileID: 445383599}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &7946482039845575615
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7946482040268797532, guid: 87c6d3227a0ce724ea61e42ace93ee83, type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7946482040268797532, guid: 87c6d3227a0ce724ea61e42ace93ee83, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7946482040268797532, guid: 87c6d3227a0ce724ea61e42ace93ee83, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7946482040268797532, guid: 87c6d3227a0ce724ea61e42ace93ee83, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7946482040268797532, guid: 87c6d3227a0ce724ea61e42ace93ee83, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7946482040268797532, guid: 87c6d3227a0ce724ea61e42ace93ee83, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7946482040268797532, guid: 87c6d3227a0ce724ea61e42ace93ee83, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7946482040268797532, guid: 87c6d3227a0ce724ea61e42ace93ee83, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7946482040268797532, guid: 87c6d3227a0ce724ea61e42ace93ee83, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7946482040268797532, guid: 87c6d3227a0ce724ea61e42ace93ee83, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7946482040268797532, guid: 87c6d3227a0ce724ea61e42ace93ee83, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7946482040268797533, guid: 87c6d3227a0ce724ea61e42ace93ee83, type: 3}
-      propertyPath: m_Name
-      value: PursuitMusicController
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 87c6d3227a0ce724ea61e42ace93ee83, type: 3}

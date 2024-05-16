@@ -1,4 +1,3 @@
-using System.Collections;
 using _Project.Scripts.PlayerLogic;
 using _Project.Scripts.Services;
 using _Project.Scripts.UI;

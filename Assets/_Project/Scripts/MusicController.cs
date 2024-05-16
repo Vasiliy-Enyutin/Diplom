@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 using Random = UnityEngine.Random;
 
 namespace _Project.Scripts
@@ -12,6 +13,7 @@ namespace _Project.Scripts
         private AudioSource _audioSource;
         private bool _isPaused = false;
 
+        [Inject]
         private PursuitMusicController _pursuitMusicController;
 
         private void Awake()
@@ -21,11 +23,6 @@ namespace _Project.Scripts
             _audioSource.playOnAwake = false;
             _audioSource.clip = null;
             PlayIdleMusic();
-        }
-
-        private void Start()
-        {
-            _pursuitMusicController = FindObjectOfType<PursuitMusicController>();
         }
 
         private void Update()

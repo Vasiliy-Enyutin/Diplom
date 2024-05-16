@@ -26,6 +26,8 @@ namespace _Project.Scripts.Services
 		private EnemyDescriptor _enemyDescriptor;
 		[Inject]
 		private InputService _inputService;
+		[Inject]
+		private LightingManager _lightingManager;
 
 		public Player Player { get; private set; }
 
