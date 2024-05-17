@@ -1,4 +1,3 @@
-using System;
 using _Project.Scripts.PlayerLogic;
 using _Project.Scripts.Services;
 using _Project.Scripts.UI;
@@ -48,8 +47,7 @@ namespace _Project.Scripts
         {
 	        _gameFactoryService.CreateEnemies();
 	        NavMeshSurface ground = FindObjectOfType<NavMeshSurface>();
-	        Debug.Log(ground);
-	        ground.BuildNavMesh();
+	        ground.UpdateNavMesh(ground.navMeshData);
         }
 
         private void Start()
