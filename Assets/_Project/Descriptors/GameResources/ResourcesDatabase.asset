@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: ResourcesDatabase
   m_EditorClassIdentifier: 
   Resources:
+  - {fileID: 11400000, guid: 0e1531712851bff409033542458779de, type: 2}
   - {fileID: 11400000, guid: da56b86b7bdf61e4693cf11078fb4fb6, type: 2}

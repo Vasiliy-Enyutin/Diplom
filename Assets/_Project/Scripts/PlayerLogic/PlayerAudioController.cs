@@ -1,7 +1,5 @@
-using System;
 using _Project.Scripts.Services;
 using UnityEngine;
-using Zenject;
 using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.PlayerLogic
