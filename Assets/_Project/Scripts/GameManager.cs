@@ -25,6 +25,7 @@ namespace _Project.Scripts
 	        _gameFactoryService.CreateMainBuilding();
             _gameFactoryService.CreatePlayer();
             _gameFactoryService.CreateCamera();
+            _gameFactoryService.CreateResources();
             _lightingManager.OnNightFalls += HandleOnNightFalls;
             _lightingManager.OnMorningComes += HandleOnMorningComes;
             NavMeshSurface ground = FindObjectOfType<NavMeshSurface>();

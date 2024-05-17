@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using _Project.Scripts.Descriptors;
+using _Project.Scripts.Descriptors.GameResources;
 using _Project.Scripts.EnemyLogic;
+using _Project.Scripts.GameResources;
 using _Project.Scripts.PlayerLogic;
 using Cinemachine;
 using JetBrains.Annotations;
@@ -20,6 +22,8 @@ namespace _Project.Scripts.Services
 		private CameraDescriptor _cameraDescriptor = null!;
 		[Inject]
 		private LocationDescriptor _locationDescriptor = null!;
+		[Inject]
+		private ResourcesDatabase _resourcesDatabase = null!;
 		[Inject]
 		private MainBuildingDescriptor _mainBuildingDescriptor = null!;
 		[Inject]
@@ -58,6 +62,45 @@ namespace _Project.Scripts.Services
 			virtualCamera.Follow = target;
 			virtualCamera.LookAt = target;
 		}
+		
+		public void CreateResources()
+		{
+			foreach (ResourceDescriptor resourceDescriptor in _resourcesDatabase.Resources)
+			{
+				int resourcesNumberOnMap = resourceDescriptor.ResourcesNumberOnMap;
+				List<Vector3> availableSpawnPoints = new(resourceDescriptor.SpawnPoints);
+
+				for (int i = 0; i < resourcesNumberOnMap; i++)
+				{
+					if (availableSpawnPoints.Count > 0)
+					{
+						int randomIndex = Random.Range(0, availableSpawnPoints.Count);
+						Vector3 spawnPoint = availableSpawnPoints[randomIndex];
+
+						GameResource resource = _assetProviderService.CreateAsset<GameResource>(resourceDescriptor.ResourcePrefab, spawnPoint);
+						resource.Init(resourceDescriptor.ResourceType, resourceDescriptor.ResourcesAmount);
+
+						availableSpawnPoints.RemoveAt(randomIndex);
+					}
+					else
+					{
+						break;
+					}
+				}
+			}
+		}
+
+		// public void CreateResources()
+		// {
+		// 	foreach (ResourceDescriptor resourceDescriptor in _resourcesDatabase.Resources)
+		// 	{
+		// 		int resourcesNumberOnMap = resourceDescriptor.ResourcesNumberOnMap;
+		// 		foreach (Vector3 spawnPoint in resourceDescriptor.SpawnPoints)
+		// 		{
+		// 			GameResource resource = _assetProviderService.CreateAsset<GameResource>(resourceDescriptor.ResourcePrefab, spawnPoint);
+		// 		}
+		// 	}
+		// }
 
 		public void CreateEnemies()
 		{

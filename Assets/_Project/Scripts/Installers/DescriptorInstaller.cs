@@ -1,4 +1,5 @@
 using _Project.Scripts.Descriptors;
+using _Project.Scripts.Descriptors.GameResources;
 using UnityEngine;
 using Zenject;
 
@@ -19,6 +20,8 @@ namespace _Project.Scripts.Installers
 		private EnemyDescriptor _enemyDescriptor;
 		[SerializeField]
 		private UiDescriptor _uiDescriptor;
+		[SerializeField]
+		private ResourcesDatabase _resourcesDatabase;
 		
 		public override void InstallBindings()
 		{
@@ -28,6 +31,7 @@ namespace _Project.Scripts.Installers
 			Container.BindInstance(_mainBuildingDescriptor).AsSingle();
 			Container.BindInstance(_enemyDescriptor).AsSingle();
 			Container.BindInstance(_uiDescriptor).AsSingle();
+			Container.BindInstance(_resourcesDatabase).AsSingle();
 		}
 	}
 }
