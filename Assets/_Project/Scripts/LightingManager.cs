@@ -1,3 +1,4 @@
+using System;
 using _Project.Scripts.Descriptors;
 using UnityEngine;
 
@@ -12,23 +13,46 @@ namespace _Project.Scripts
 		 //Variables
 		 [SerializeField, Range(0, 24)] private float TimeOfDay;
 		 [SerializeField] private float dayDurationInSeconds = 600f; // Продолжительность дня в секундах
+
+		 private bool isNightFallsInvoked = false;
+		 private bool isMorningComesInvoked = false;
+		 
+		 public event Action OnNightFalls; 
+		 public event Action OnMorningComes; 
   
 		 private void Update()
 		 {
-		 	if (Preset == null)
-		 		return;
-  
-		 	if (Application.isPlaying)
-		 	{
-		 		// Увеличиваем время с учетом продолжительности дня
-		 		TimeOfDay += (Time.deltaTime / dayDurationInSeconds) * 24;
-		 		TimeOfDay %= 24; // Modulus to ensure always between 0-24
-		 		UpdateLighting(TimeOfDay / 24f);
-		 	}
-		 	else
-		 	{
-		 		UpdateLighting(TimeOfDay / 24f);
-		 	}
+			 if (Preset == null)
+				 return;
+
+			 if (Application.isPlaying)
+			 {
+				 // Увеличиваем время с учетом продолжительности дня
+				 TimeOfDay += (Time.deltaTime / dayDurationInSeconds) * 24;
+				 TimeOfDay %= 24; // Modulus to ensure always between 0-24
+
+				 // Проверяем, наступило ли время 20:00
+				 if ((TimeOfDay >= 20f || TimeOfDay < 8f) && !isNightFallsInvoked)
+				 {
+					 OnNightFalls?.Invoke();
+					 isNightFallsInvoked = true;
+					 isMorningComesInvoked = false;
+				 }
+
+				 // Проверяем, наступило ли время 8:00
+				 if (TimeOfDay >= 8f && TimeOfDay < 20f && !isMorningComesInvoked)
+				 {
+					 OnMorningComes?.Invoke();
+					 isMorningComesInvoked = true;
+					 isNightFallsInvoked = false;
+				 }
+
+				 UpdateLighting(TimeOfDay / 24f);
+			 }
+			 else
+			 {
+				 UpdateLighting(TimeOfDay / 24f);
+			 }
 		 }
   
 		 private void UpdateLighting(float timePercent)

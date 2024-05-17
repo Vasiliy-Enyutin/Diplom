@@ -26,8 +26,6 @@ namespace _Project.Scripts.Services
 		private EnemyDescriptor _enemyDescriptor;
 		[Inject]
 		private InputService _inputService;
-		[Inject]
-		private LightingManager _lightingManager;
 
 		public Player Player { get; private set; }
 
@@ -69,6 +67,14 @@ namespace _Project.Scripts.Services
 				enemy.Init(Player.gameObject, _enemyDescriptor, _mainBuilding);
 				enemy.OnEnemyDied += HandleEnemyDied;
 				Enemies.Add(enemy);
+			}
+		}
+
+		public void DestroyAllEnemies()
+		{
+			for (int i = 0; i < Enemies.Count; i++)
+			{
+				Enemies[0].TakeDamage(_enemyDescriptor.Health);
 			}
 		}
 

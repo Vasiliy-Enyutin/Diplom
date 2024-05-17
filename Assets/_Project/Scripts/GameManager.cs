@@ -1,3 +1,4 @@
+using System;
 using _Project.Scripts.PlayerLogic;
 using _Project.Scripts.Services;
 using _Project.Scripts.UI;
@@ -15,6 +16,8 @@ namespace _Project.Scripts
         private UiManager _uiManager;
         [Inject]
         private GameFactoryService _gameFactoryService;
+        [Inject]
+        private LightingManager _lightingManager;
 
         private void Awake()
         {
@@ -23,9 +26,30 @@ namespace _Project.Scripts
 	        _gameFactoryService.CreateMainBuilding();
             _gameFactoryService.CreatePlayer();
             _gameFactoryService.CreateCamera();
-            _gameFactoryService.CreateEnemies();
+            _lightingManager.OnNightFalls += HandleOnNightFalls;
+            _lightingManager.OnMorningComes += HandleOnMorningComes;
             NavMeshSurface ground = FindObjectOfType<NavMeshSurface>();
+            Debug.Log(ground);
             ground.BuildNavMesh();
+        }
+
+        private void OnDestroy()
+        {
+	        _lightingManager.OnNightFalls -= HandleOnNightFalls;
+	        _lightingManager.OnMorningComes -= HandleOnMorningComes;
+        }
+
+        private void HandleOnMorningComes()
+        {
+	        _gameFactoryService.DestroyAllEnemies();
+        }
+
+        private void HandleOnNightFalls()
+        {
+	        _gameFactoryService.CreateEnemies();
+	        NavMeshSurface ground = FindObjectOfType<NavMeshSurface>();
+	        Debug.Log(ground);
+	        ground.BuildNavMesh();
         }
 
         private void Start()
