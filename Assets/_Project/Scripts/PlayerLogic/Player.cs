@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using _Project.Scripts.Descriptors;
 using _Project.Scripts.Services;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace _Project.Scripts.PlayerLogic
 	    
 	    private int _currentHealth;
 	    private int _baseHealth;
+	    private bool _isRestoringHealth;
 
 	    public event Action OnDestroy;
 
@@ -31,7 +33,12 @@ namespace _Project.Scripts.PlayerLogic
 	    {
 		    _currentHealth -= damage;
 		    OnPlayerHealthChanged?.Invoke(_currentHealth);
-	    
+		    if (!_isRestoringHealth)
+		    {
+			    StartCoroutine(RestoreHealthOverTime(PlayerDescriptor.RestoreHealthAmount,
+				    PlayerDescriptor.RestoreHealthInterval));
+		    }
+		    
 		    if (_currentHealth <= 0)
 		    {
 			    Die();
@@ -43,5 +50,22 @@ namespace _Project.Scripts.PlayerLogic
             OnDestroy?.Invoke();
             Destroy(gameObject);
         }
+	    
+	    private IEnumerator RestoreHealthOverTime(int amount, float interval)
+	    {
+		    _isRestoringHealth = true;
+		    while (_currentHealth < _baseHealth)
+		    {
+			    _currentHealth += amount;
+			    if (_currentHealth > _baseHealth)
+			    {
+				    _currentHealth = _baseHealth;
+			    }
+			    OnPlayerHealthChanged?.Invoke(_currentHealth);
+			    yield return new WaitForSeconds(interval);
+		    }
+
+		    _isRestoringHealth = false;
+	    }
     }
 }

@@ -7,6 +7,5 @@ namespace _Project.Scripts.Descriptors.GameResources
 	public class ResourcesDatabase : ScriptableObject
 	{
 		public List<ResourceDescriptor> Resources = new();
-		public Vector3[] SpawnPoints;
 	}
 }

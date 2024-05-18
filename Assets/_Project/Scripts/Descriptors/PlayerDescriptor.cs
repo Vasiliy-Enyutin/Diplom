@@ -10,5 +10,7 @@ namespace _Project.Scripts.Descriptors
 		public int Health;
 		public float MoveSpeed;
 		public WeaponDatabase WeaponDatabase;
+		public float RestoreHealthInterval;
+		public int RestoreHealthAmount;
 	}
 }

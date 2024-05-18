@@ -66,7 +66,7 @@ namespace _Project.Scripts.Services
 		
 		public void CreateResources()
 		{
-			List<Vector3> availableSpawnPoints = new(_resourcesDatabase.SpawnPoints);
+			List<Vector3> availableSpawnPoints = new(_locationDescriptor.InitialResourcesSpawnPoints);
 
 			foreach (ResourceDescriptor resourceDescriptor in _resourcesDatabase.Resources)
 			{
@@ -96,12 +96,26 @@ namespace _Project.Scripts.Services
 
 		public void CreateEnemies()
 		{
+			List<Vector3> availableSpawnPoints = new(_locationDescriptor.InitialEnemyPositionPoints);
+
 			for (int i = 0; i < _enemyDescriptor.EnemiesNumber; i++)
 			{
-				Enemy enemy = _assetProviderService.CreateAsset<Enemy>(_enemyDescriptor.Enemy, _locationDescriptor.InitialEnemyPositionPoint);
-				enemy.Init(Player.gameObject, _enemyDescriptor, MainBuilding);
-				enemy.OnEnemyDied += HandleEnemyDied;
-				Enemies.Add(enemy);
+				if (availableSpawnPoints.Count > 0)
+				{
+					int randomIndex = Random.Range(0, availableSpawnPoints.Count);
+					Vector3 spawnPoint = availableSpawnPoints[randomIndex];
+
+					Enemy enemy = _assetProviderService.CreateAsset<Enemy>(_enemyDescriptor.Enemy, spawnPoint);
+					enemy.Init(Player.gameObject, _enemyDescriptor, MainBuilding);
+					enemy.OnEnemyDied += HandleEnemyDied;
+					Enemies.Add(enemy);
+
+					availableSpawnPoints.RemoveAt(randomIndex);
+				}
+				else
+				{
+					break;
+				}
 			}
 		}
 

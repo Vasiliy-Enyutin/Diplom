@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemy: {fileID: 5938040036998107608, guid: 153da5451e4c3b54bbdbc67260faa546, type: 3}
   Health: 100
-  EnemiesNumber: 1
-  MoveSpeed: 3.5
-  PursuitDistance: 5
+  EnemiesNumber: 10
+  MoveSpeed: 2
+  PursuitDistance: 10
   Damage: 25
   AttackDuration: 2
   ReloadSpeed: 7

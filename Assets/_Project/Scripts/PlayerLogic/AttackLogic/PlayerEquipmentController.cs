@@ -13,14 +13,14 @@ namespace _Project.Scripts.PlayerLogic.AttackLogic
 	    private Transform _rifleSpawnPointTransform;
 	    
         private PlayerAttackController _attackController;
-        private WeaponDatabase _weaponDatabase;
+        private WeaponData[] _weaponData;
         private InputService _inputService;
         private readonly List<WeaponBase> _weapons = new();
 
         private void Start()
         {
             _attackController = GetComponent<PlayerAttackController>();
-            _weaponDatabase = GetComponent<Player>().PlayerDescriptor.WeaponDatabase;
+            _weaponData = GetComponent<Player>().PlayerDescriptor.WeaponDatabase.Weapons;
             _inputService = GetComponent<Player>().InputService;
             
             _inputService.WeaponChangeRequested += EquipWeapon;
@@ -29,14 +29,19 @@ namespace _Project.Scripts.PlayerLogic.AttackLogic
             EquipWeapon(WeaponType.Melee);
         }
 
+        private void OnDestroy()
+        {
+	        _inputService.WeaponChangeRequested -= EquipWeapon;
+        }
+
         private void InstantiateAllWeapons()
         {
-	        foreach (WeaponData weaponData in _weaponDatabase.Weapons)
+	        foreach (WeaponData weapon in _weaponData)
 	        {
-		        if (weaponData != null && weaponData.WeaponPrefab != null)
+		        if (weapon != null && weapon.WeaponPrefab != null)
 		        {
 			        Transform spawnPoint;
-			        switch (weaponData.WeaponType)
+			        switch (weapon.WeaponType)
 			        {
 				        case WeaponType.Melee:
 					        spawnPoint = _axeSpawnPointTransform;
@@ -45,25 +50,19 @@ namespace _Project.Scripts.PlayerLogic.AttackLogic
 					        spawnPoint = _rifleSpawnPointTransform;
 					        break;
 				        default:
-					        Debug.LogError($"Unknown weapon type: {weaponData.WeaponType}");
+					        Debug.LogError($"Unknown weapon type: {weapon.WeaponType}");
 					        continue;
 			        }
 
-			        GameObject weaponObject = Instantiate(weaponData.WeaponPrefab, spawnPoint);
-			        WeaponBase weapon = weaponObject.GetComponent<WeaponBase>();
-			        weapon.Init(weaponData);
-			        weapon.gameObject.SetActive(false);
-			        _weapons.Add(weapon);
+			        GameObject weaponObject = Instantiate(weapon.WeaponPrefab, spawnPoint);
+			        WeaponBase newWeapon = weaponObject.GetComponent<WeaponBase>();
+			        newWeapon.Init(weapon);
+			        newWeapon.gameObject.SetActive(false);
+			        _weapons.Add(newWeapon);
 		        }
 	        }
         }
-
-
-        private void OnDestroy()
-        {
-            _inputService.WeaponChangeRequested -= EquipWeapon;
-        }
-
+        
         private void EquipWeapon(WeaponType weaponType)
         {
             // Deactivate all weapons

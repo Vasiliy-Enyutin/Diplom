@@ -10,7 +10,7 @@ namespace _Project.Scripts.PlayerLogic
         [SerializeField] 
         private Transform _playerGfxTransform;
         
-        private PlayerDescriptor _playerDescriptor = null!;
+        private float _moveSpeed;
         private InputService _inputService = null!;
         private Rigidbody _rigidbody = null!;
         private Vector3 _moveDirection;
@@ -25,18 +25,18 @@ namespace _Project.Scripts.PlayerLogic
 
         private void Start()
         {
-            _playerDescriptor = GetComponent<Player>().PlayerDescriptor;
+            _moveSpeed = GetComponent<Player>().PlayerDescriptor.MoveSpeed;
             _inputService = GetComponent<Player>().InputService;
         }
 
         private void FixedUpdate()
         {
-            if (_inputService == null || _playerDescriptor == null)
+            if (_inputService == null)
             {
                 return;
             }
             
-            Move(_inputService.MoveDirection, _playerDescriptor.MoveSpeed);
+            Move(_inputService.MoveDirection, _moveSpeed);
             RotatePlayer();
         }
 

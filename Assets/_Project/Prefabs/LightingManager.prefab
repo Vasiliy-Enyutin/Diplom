@@ -46,5 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DirectionalLight: {fileID: 0}
   Preset: {fileID: 11400000, guid: 055b3ec4017ba73429f61ef41c0614e3, type: 2}
-  TimeOfDay: 9
-  dayDurationInSeconds: 10
+  TimeOfDay: 15
+  dayDurationInSeconds: 60
