@@ -5,6 +5,7 @@ namespace _Project.Scripts.GameResources
 		Wood,
 		Coal,
 		Lead,
-		Sulfur
+		Sulfur,
+		Bullet
 	}
 }

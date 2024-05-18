@@ -15,7 +15,7 @@ namespace _Project.Scripts.EnemyLogic
 		
 		private EnemyMovement _enemyMovement;
 
-		private float _damage;
+		private int _damage;
 		private float _attackDuration;
 		private float _reloadSpeed;
 		private bool _isReadyToAttack = true;

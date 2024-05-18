@@ -6,6 +6,6 @@ namespace _Project.Scripts.Descriptors
 	public class MainBuildingDescriptor : ScriptableObject
 	{
 		public MainBuilding Prefab = null!;
-		public float Health;
+		public int Health;
 	}
 }

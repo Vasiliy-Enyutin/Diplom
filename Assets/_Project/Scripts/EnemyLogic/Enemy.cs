@@ -8,7 +8,7 @@ namespace _Project.Scripts.EnemyLogic
 	[RequireComponent(typeof(NavMeshAgent))]
 	public class Enemy : MonoBehaviour, IDamageable
 	{
-		private float _health;
+		private int _health;
 	    
 		public EnemyDescriptor EnemyDescriptor { get; private set; }
 		public GameObject Target { get; private set; }
@@ -27,7 +27,7 @@ namespace _Project.Scripts.EnemyLogic
 			MainBuilding = mainBuilding;
 		}
 
-		public void TakeDamage(float damage)
+		public void TakeDamage(int damage)
 		{
 			_health -= damage;
 			if (_health <= 0)

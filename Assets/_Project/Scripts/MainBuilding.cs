@@ -5,19 +5,34 @@ namespace _Project.Scripts
 {
 	public class MainBuilding : MonoBehaviour, IDamageable
 	{
-		private float _health;
-		
+		public int BaseHealth { get; private set; }
+
+		public int CurrentHealth { get; private set; }
+
 		public void Init(MainBuildingDescriptor mainBuildingDescriptor)
 		{
-			_health = mainBuildingDescriptor.Health;
+			CurrentHealth = mainBuildingDescriptor.Health;
+			BaseHealth = mainBuildingDescriptor.Health;
 		}
 
-		public void TakeDamage(float damage)
+		public void Repair(int hp)
+		{
+			if (CurrentHealth + hp > BaseHealth)
+			{
+				CurrentHealth = BaseHealth;
+			}
+			else
+			{
+				CurrentHealth += hp;
+			}
+		}
+
+		public void TakeDamage(int damage)
 		{
 			Debug.Log("MainBuilding get hit");
-			_health -= damage;
+			CurrentHealth -= damage;
 		
-			if (_health <= 0)
+			if (CurrentHealth <= 0)
 			{
 				Die();
 			}

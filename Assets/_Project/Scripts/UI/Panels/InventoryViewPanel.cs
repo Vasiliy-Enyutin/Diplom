@@ -1,5 +1,5 @@
-﻿using System;
-using _Project.Scripts.GameResources;
+﻿using _Project.Scripts.GameResources;
+using _Project.Scripts.PlayerLogic;
 using _Project.Scripts.PlayerLogic.InventoryLogic;
 using UnityEngine;
 using TMPro;
@@ -18,10 +18,12 @@ namespace _Project.Scripts.UI.Panels
 		private TextMeshProUGUI  _woodAmountText;
 		
 		private InventoryController _inventoryController;
+		private CraftController _craftController;
 		
-		public void Init(InventoryController inventoryController)
+		public void Init(MainBuilding mainBuilding, InventoryController inventoryController)
 		{
 			_inventoryController = inventoryController;
+			_craftController = new CraftController(mainBuilding, inventoryController);
 
 			_inventoryController.OnResourceAmountChanged += ChangeResourceAmountUI;
 		}
@@ -31,9 +33,18 @@ namespace _Project.Scripts.UI.Panels
 			_inventoryController.OnResourceAmountChanged -= ChangeResourceAmountUI;
 		}
 
+		public void OnCreateAmmoButtonClicked()
+		{
+			_craftController.CreateAmmo();
+		}
+
+		public void OnRepairBaseButtonClicked()
+		{
+			_craftController.RepairBase();
+		}
+
 		private void ChangeResourceAmountUI(ResourceType resourceType, int amount)
 		{
-			Debug.Log("Change resource amount InventoryView: " + resourceType + " " + amount);
 			switch (resourceType)
 			{
 				case ResourceType.Coal:

@@ -7,7 +7,7 @@ namespace _Project.Scripts.PlayerLogic
 {
     public class Player : MonoBehaviour, IDamageable
     {
-	    private float _health;
+	    private int _health;
 	    
 	    public event Action OnDestroy;
 
@@ -22,7 +22,7 @@ namespace _Project.Scripts.PlayerLogic
 		    InputService = inputService;
 	    }
 
-	    public void TakeDamage(float damage)
+	    public void TakeDamage(int damage)
 	    {
 		    Debug.Log("Player get hit. Damage: " + damage);
 		    _health -= damage;

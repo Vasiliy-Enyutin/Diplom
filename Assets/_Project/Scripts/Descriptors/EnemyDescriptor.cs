@@ -7,11 +7,11 @@ namespace _Project.Scripts.Descriptors
     public class EnemyDescriptor : ScriptableObject
     {
         public Enemy Enemy;
-        public float Health;
+        public int Health;
         public int EnemiesNumber;
         public float MoveSpeed;
         public float PursuitDistance;
-        public float Damage;
+        public int Damage;
         public float AttackDuration;
         public float ReloadSpeed;
     }

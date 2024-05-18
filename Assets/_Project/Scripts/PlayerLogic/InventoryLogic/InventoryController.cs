@@ -16,14 +16,21 @@ namespace _Project.Scripts.PlayerLogic.InventoryLogic
 			OnResourceAmountChanged?.Invoke(resourceType, amount);
 		}
 
-		public bool TryGetResource(ResourceType resourceType, int amount)
+		public int GetSpecifiedResourceAmountOrLess(ResourceType resourceType, int amount)
 		{
-			bool success = _inventoryModel.TryGetResource(resourceType, amount);
-			if (success)
+			return _inventoryModel.GetSpecifiedResourceAmountOrLess(resourceType, amount);
+		}
+
+		public int GetAllResourceByType(ResourceType resourceType)
+		{
+			int amount = _inventoryModel.GetAllResourceByType(resourceType);
+			if (amount > 0)
 			{
-				OnResourceAmountChanged?.Invoke(resourceType, amount);
+				OnResourceAmountChanged?.Invoke(resourceType, -amount);
+				return amount;
 			}
-			return success;
+			
+			return 0;
 		}
 	}
 }

@@ -7,7 +7,7 @@ namespace _Project.Scripts.Descriptors
 	public class PlayerDescriptor : ScriptableObject
 	{
 		public Player Prefab = null!;
-		public float Health;
+		public int Health;
 		public float MoveSpeed;
 		public WeaponDatabase WeaponDatabase;
 	}
