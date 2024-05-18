@@ -21,8 +21,8 @@ namespace _Project.Scripts.Installers
 			Container.Bind<LightingManager>().FromComponentInNewPrefab(_lightingManagerPrefab).AsSingle();
 			Container.Bind<AssetProviderService>().AsSingle();
 			Container.Bind<InputService>().FromComponentInNewPrefab(_inputServicePrefab).AsSingle();
-			Container.Bind<UiManager>().FromComponentInNewPrefab(_uiManager).AsSingle();
 			Container.Bind<GameFactoryService>().AsSingle();
+			Container.Bind<UiManager>().FromComponentInNewPrefab(_uiManager).AsSingle();
 			Container.Bind<PursuitMusicController>().FromComponentInNewPrefab(_pursuitMusicController).AsSingle();
 		}
 	}

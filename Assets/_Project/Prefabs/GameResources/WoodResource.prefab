@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1413743386292223756}
   - component: {fileID: 4009704328335490153}
   m_Layer: 0
-  m_Name: TreeResource
+  m_Name: WoodResource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -163,7 +163,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4026988788687868377, guid: c0c32672766a81647b04690fc9ed3595, type: 3}
       propertyPath: m_Name
-      value: TreeResourceGFX
+      value: WoodResourceGFX
       objectReference: {fileID: 0}
     - target: {fileID: 4026988788687868377, guid: c0c32672766a81647b04690fc9ed3595, type: 3}
       propertyPath: m_Layer

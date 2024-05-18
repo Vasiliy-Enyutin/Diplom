@@ -80,7 +80,7 @@ namespace _Project.Scripts
 
         private void StartGame()
         {
-            _uiManager.HideAll();
+            _uiManager.ShowMenu(Menu.InventoryView);
             EnableCharactersMovement();
         }
 

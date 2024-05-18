@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: LeadDescriptor
   m_EditorClassIdentifier: 
   ResourcePrefab: {fileID: 415740928591416511, guid: ee62318040cee1840b1d5e04ffb17e66, type: 3}
-  ResourceType: 3
+  ResourceType: 2
   ResourcesNumberOnMap: 5
   ResourcesAmount: 20

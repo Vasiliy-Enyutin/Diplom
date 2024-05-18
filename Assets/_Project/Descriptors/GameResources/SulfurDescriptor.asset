@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SulfurDescriptor
   m_EditorClassIdentifier: 
   ResourcePrefab: {fileID: 6669020705698677209, guid: 2ab74cc39d0a01e49b822398166f27af, type: 3}
-  ResourceType: 4
+  ResourceType: 3
   ResourcesNumberOnMap: 5
   ResourcesAmount: 20

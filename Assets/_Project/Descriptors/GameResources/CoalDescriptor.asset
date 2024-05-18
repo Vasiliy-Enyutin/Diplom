@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: CoalDescriptor
   m_EditorClassIdentifier: 
   ResourcePrefab: {fileID: 3865234295396260982, guid: b2c3fc9fdc018b040b3d1d291f3ac1a4, type: 3}
-  ResourceType: 2
+  ResourceType: 1
   ResourcesNumberOnMap: 5
   ResourcesAmount: 20

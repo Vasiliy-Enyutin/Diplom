@@ -81,9 +81,10 @@ namespace _Project.Scripts.EnemyLogic
                 SetTargetToMainBuilding();
             }
 
-            if (_agent.CalculatePath(_targetTransform.position, path) && path.status == NavMeshPathStatus.PathComplete)
+            if (_agent.CalculatePath(_targetTransform.position, path) &&
+                path.status == NavMeshPathStatus.PathComplete)
             {
-                _agent.SetPath(path);
+	            _agent.SetPath(path);
             }
         }
 

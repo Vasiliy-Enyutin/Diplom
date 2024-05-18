@@ -81,6 +81,7 @@ namespace _Project.Scripts.Services
 
 						GameResource resource = _assetProviderService.CreateAsset<GameResource>(resourceDescriptor.ResourcePrefab, spawnPoint);
 						resource.Init(resourceDescriptor.ResourceType, resourceDescriptor.ResourcesAmount);
+						resource.OnGameResourceCollected += HandleResourceCollected;
 						_gameResources.Add(resource);
 
 						availableSpawnPoints.RemoveAt(randomIndex);
@@ -106,24 +107,31 @@ namespace _Project.Scripts.Services
 
 		public void DestroyAllResources()
 		{
-			for (int i = 0; i < _gameResources.Count; i++)
+			int resourcesCount = _gameResources.Count;
+			for (int i = 0; i < resourcesCount; i++)
 			{
 				_gameResources[0].Collect();
 			}
-			Debug.Log("Gameresources count " +  _gameResources.Count);
-			_gameResources.Clear();
 		}
 
 		public void DestroyAllEnemies()
 		{
-			for (int i = 0; i < Enemies.Count; i++)
+			int enemiesCount = Enemies.Count;
+			for (int i = 0; i < enemiesCount; i++)
 			{
 				Enemies[0].TakeDamage(_enemyDescriptor.Health);
 			}
 		}
 
+		private void HandleResourceCollected(GameResource resource)
+		{
+			resource.OnGameResourceCollected -= HandleResourceCollected;
+			_gameResources.Remove(resource);
+		}
+
 		private void HandleEnemyDied(Enemy enemy)
 		{
+			enemy.OnEnemyDied -= HandleEnemyDied;
 			Enemies.Remove(enemy);
 		}
 	}

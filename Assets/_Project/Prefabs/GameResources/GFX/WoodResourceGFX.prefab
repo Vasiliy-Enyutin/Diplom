@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 794524481623672006}
   - component: {fileID: 3234218433630908428}
   m_Layer: 0
-  m_Name: TreeResourceGFX
+  m_Name: WoodResourceGFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
