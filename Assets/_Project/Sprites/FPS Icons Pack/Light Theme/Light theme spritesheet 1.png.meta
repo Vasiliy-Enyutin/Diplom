@@ -303,7 +303,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LT Bullet 6
+      name: B
       rect:
         serializedVersion: 2
         x: 47
@@ -324,7 +324,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LT Bullet 7
+      name: Bullet
       rect:
         serializedVersion: 2
         x: 235
@@ -767,7 +767,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e9fd12da8a3450042819bbf168a5801a
     internalID: 0
     vertices: []
     indices: 
@@ -786,12 +786,13 @@ TextureImporter:
       LT Handgrenade 3: 21300026
       LT Health: 21300052
       LT Bullet 4: 21300006
+      Bullet: 21300012
+      B: 21300010
       LT Bullet 1: 21300000
       LT Handgrenade 8: 21300036
-      LT Bullet 7: 21300012
       LT Tank 2: 21300040
-      LT Bullet 10: 21300018
       LT Jet 2: 21300044
+      LT Bullet 10: 21300018
       LT Bullet 3: 21300004
       LT Jet 1: 21300042
       LT Explosive: 21300046
@@ -800,7 +801,6 @@ TextureImporter:
       LT Bullet 9: 21300016
       LT Handgrenade 7: 21300034
       LT Handgrenade 5: 21300030
-      LT Bullet 6: 21300010
       LT Handgrenade 6: 21300032
   spritePackingTag: 
   pSDRemoveMatte: 0
