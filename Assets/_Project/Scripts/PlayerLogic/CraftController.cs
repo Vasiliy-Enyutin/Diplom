@@ -17,16 +17,8 @@ namespace _Project.Scripts.PlayerLogic
 		
 		public void CreateAmmo()
 		{
-			int bulletsCount = 0;
-
-			int coalCount = _inventoryController.GetAllResourceByType(ResourceType.Coal);
-			int leadCount = _inventoryController.GetAllResourceByType(ResourceType.Lead);
-			int sulfurCount = _inventoryController.GetAllResourceByType(ResourceType.Sulfur);
-
-			int minResourceCount = Math.Min(coalCount, Math.Min(leadCount, sulfurCount));
-
-			// Увеличиваем bulletsCount на количество возможных патронов
-			bulletsCount += minResourceCount;
+			int bulletsCount = _inventoryController.GetBulletsNumberThatCanBeCreated();
+			_inventoryController.AddResource(ResourceType.Bullet, bulletsCount);
 		}
 
 		public void RepairBase()

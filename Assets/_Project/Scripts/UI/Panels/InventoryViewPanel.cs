@@ -16,20 +16,28 @@ namespace _Project.Scripts.UI.Panels
 		private TextMeshProUGUI  _sulfurAmountText;
 		[SerializeField]
 		private TextMeshProUGUI  _woodAmountText;
+		[SerializeField]
+		private TextMeshProUGUI  _bulletAmountText;
+		[SerializeField]
+		private TextMeshProUGUI _mainBuildingHealthText;
 		
 		private InventoryController _inventoryController;
 		private CraftController _craftController;
+		private MainBuilding _mainBuilding;
 		
 		public void Init(MainBuilding mainBuilding, InventoryController inventoryController)
 		{
 			_inventoryController = inventoryController;
 			_craftController = new CraftController(mainBuilding, inventoryController);
 
+			_mainBuilding = mainBuilding;
+			_mainBuilding.OnMainBuildingHealthChanged += UpdateMainBuildingHealth;
 			_inventoryController.OnResourceAmountChanged += ChangeResourceAmountUI;
 		}
 
 		private void OnDestroy()
 		{
+			_mainBuilding.OnMainBuildingHealthChanged -= UpdateMainBuildingHealth;
 			_inventoryController.OnResourceAmountChanged -= ChangeResourceAmountUI;
 		}
 
@@ -49,7 +57,7 @@ namespace _Project.Scripts.UI.Panels
 			{
 				case ResourceType.Coal:
 					int coalAmount = int.Parse(_coalAmountText.text);
-					_coalAmountText.text = (coalAmount + amount).ToString();
+					_coalAmountText.text = (coalAmount + amount).ToString();	
 					break;
 				case ResourceType.Lead:
 					int leadAmount = int.Parse(_leadAmountText.text);
@@ -63,7 +71,16 @@ namespace _Project.Scripts.UI.Panels
 					int sulfurAmount = int.Parse(_sulfurAmountText.text);
 					_sulfurAmountText.text = (sulfurAmount + amount).ToString();
 					break;
+				case ResourceType.Bullet:
+					int bulletAmount = int.Parse(_bulletAmountText.text);
+					_bulletAmountText.text = (bulletAmount + amount).ToString();
+					break;
 			}
+		}
+
+		private void UpdateMainBuildingHealth(int currentMainBuildingHealth)
+		{
+			_mainBuildingHealthText.text = currentMainBuildingHealth.ToString();
 		}
 	}
 }

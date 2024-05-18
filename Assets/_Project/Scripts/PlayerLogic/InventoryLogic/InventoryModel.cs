@@ -19,27 +19,53 @@ namespace _Project.Scripts.PlayerLogic.InventoryLogic
 			}
 		}
 
-		public int GetSpecifiedResourceAmountOrLess(ResourceType resourceType, int amount)
+		public int LookResourceAmount(ResourceType resourceType)
+		{
+			if (_resourceTypeByAmount.TryGetValue(resourceType, out int currentAmount))
+			{
+				return currentAmount;
+			}
+
+			return 0;
+		}
+
+		public int GetResource(ResourceType resourceType, int amount)
 		{
 			if (!_resourceTypeByAmount.TryGetValue(resourceType, out int currentAmount))
 			{
 				return 0;
 			}
 
-			if (currentAmount >= amount)
+			if (currentAmount < amount)
 			{
-				_resourceTypeByAmount[resourceType] -= amount;
-				return amount;
+				_resourceTypeByAmount[resourceType] -= currentAmount;
+				return currentAmount;
 			}
-
-			_resourceTypeByAmount[resourceType] -= currentAmount;
-			return currentAmount;
-
+			
+			_resourceTypeByAmount[resourceType] -= amount;
+			return amount;
 		}
-		
-		public int GetAllResourceByType(ResourceType resourceType)
-		{
-			return _resourceTypeByAmount.TryGetValue(resourceType, out int currentAmount) ? currentAmount : 0;
-		}
+
+		// public int GetSpecifiedResourceAmountOrLess(ResourceType resourceType, int amount)
+		// {
+		// 	if (!_resourceTypeByAmount.TryGetValue(resourceType, out int currentAmount))
+		// 	{
+		// 		return 0;
+		// 	}
+		//
+		// 	if (currentAmount >= amount)
+		// 	{
+		// 		_resourceTypeByAmount[resourceType] -= amount;
+		// 		return amount;
+		// 	}
+		//
+		// 	_resourceTypeByAmount[resourceType] -= currentAmount;
+		// 	return currentAmount;
+		// }
+		//
+		// public int GetAllResourceByType(ResourceType resourceType)
+		// {
+		// 	return _resourceTypeByAmount.TryGetValue(resourceType, out int currentAmount) ? currentAmount : 0;
+		// }
 	}
 }

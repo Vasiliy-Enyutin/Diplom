@@ -1,3 +1,4 @@
+using System;
 using _Project.Scripts.Descriptors;
 using UnityEngine;
 
@@ -5,6 +6,8 @@ namespace _Project.Scripts
 {
 	public class MainBuilding : MonoBehaviour, IDamageable
 	{
+		public event Action<int> OnMainBuildingHealthChanged;
+
 		public int BaseHealth { get; private set; }
 
 		public int CurrentHealth { get; private set; }
@@ -23,15 +26,17 @@ namespace _Project.Scripts
 			}
 			else
 			{
+				OnMainBuildingHealthChanged?.Invoke(CurrentHealth);
 				CurrentHealth += hp;
 			}
+			OnMainBuildingHealthChanged?.Invoke(CurrentHealth);
 		}
 
 		public void TakeDamage(int damage)
 		{
-			Debug.Log("MainBuilding get hit");
 			CurrentHealth -= damage;
-		
+			OnMainBuildingHealthChanged?.Invoke(CurrentHealth);
+
 			if (CurrentHealth <= 0)
 			{
 				Die();
