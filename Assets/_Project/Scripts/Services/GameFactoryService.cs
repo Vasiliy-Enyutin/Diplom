@@ -36,7 +36,7 @@ namespace _Project.Scripts.Services
 		public List<Enemy> Enemies { get; } = new();
 
 		public MainBuilding MainBuilding;
-		private List<GameResource> _gameResources = new();
+		private readonly List<GameResource> _gameResources = new();
 
 		public void CreateMainBuilding()
 		{

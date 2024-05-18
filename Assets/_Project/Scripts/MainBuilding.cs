@@ -6,6 +6,7 @@ namespace _Project.Scripts
 {
 	public class MainBuilding : MonoBehaviour, IDamageable
 	{
+		public event Action OnDestruction;
 		public event Action<int> OnMainBuildingHealthChanged;
 
 		public int BaseHealth { get; private set; }
@@ -40,6 +41,7 @@ namespace _Project.Scripts
 
 			if (CurrentHealth <= 0)
 			{
+				OnDestruction?.Invoke();
 				Die();
 			}
 		}

@@ -25,6 +25,7 @@ namespace _Project.Scripts
 	        _gameFactoryService.CreateMainBuilding();
             _gameFactoryService.CreatePlayer();
             _gameFactoryService.CreateCamera();
+            _gameFactoryService.MainBuilding.OnDestruction += ShowGameOverPanel;
             _lightingManager.OnNightFalls += HandleOnNightFalls;
             _lightingManager.OnMorningComes += HandleOnMorningComes;
             _lightingManager.enabled = false;
@@ -32,10 +33,32 @@ namespace _Project.Scripts
             ground.BuildNavMesh();
         }
 
+        private void Start()
+        {
+	        DisableCharactersMovement();
+
+	        _uiManager.OnUserReadyToPlay += StartGame;
+	        _uiManager.OnRestartKeyPressed += RestartLevel;
+	        if (_gameFactoryService.Player != null)
+	        {
+		        _gameFactoryService.Player.OnDestroy += ShowGameOverPanel;
+	        }
+
+	        _uiManager.ShowMenu(Menu.Main);
+        }
+
         private void OnDestroy()
         {
+	        _gameFactoryService.MainBuilding.OnDestruction -= ShowGameOverPanel;
 	        _lightingManager.OnNightFalls -= HandleOnNightFalls;
 	        _lightingManager.OnMorningComes -= HandleOnMorningComes;
+	        _uiManager.OnUserReadyToPlay -= StartGame;
+	        _uiManager.OnRestartKeyPressed -= RestartLevel;
+
+	        if (_gameFactoryService.Player != null)
+	        {
+		        _gameFactoryService.Player.OnDestroy -= ShowGameOverPanel;
+	        }
         }
 
         private void HandleOnMorningComes()
@@ -51,31 +74,6 @@ namespace _Project.Scripts
 	        _gameFactoryService.CreateEnemies();
 	        NavMeshSurface ground = FindObjectOfType<NavMeshSurface>();
 	        ground.UpdateNavMesh(ground.navMeshData);
-        }
-
-        private void Start()
-        {
-            DisableCharactersMovement();
-
-            _uiManager.OnUserReadyToPlay += StartGame;
-            _uiManager.OnRestartKeyPressed += RestartLevel;
-            if (_gameFactoryService.Player != null)
-            {
-	            _gameFactoryService.Player.OnDestroy += ShowGameOverPanel;
-            }
-
-            _uiManager.ShowMenu(Menu.Main);
-        }
-
-        private void OnDisable()
-        {
-            _uiManager.OnUserReadyToPlay -= StartGame;
-            _uiManager.OnRestartKeyPressed -= RestartLevel;
-
-            if (_gameFactoryService.Player != null)
-            {
-                _gameFactoryService.Player.OnDestroy -= ShowGameOverPanel;
-            }
         }
 
         private void StartGame()
