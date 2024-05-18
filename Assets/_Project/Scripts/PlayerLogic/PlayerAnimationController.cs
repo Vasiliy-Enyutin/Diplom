@@ -96,7 +96,7 @@ namespace _Project.Scripts.PlayerLogic
         private void HandleAttacking()
         {
             _isAttacking = true;
-            _animator.CrossFade(currentWeaponPrefix + "Attack", 0.2f);
+            _animator.Play(currentWeaponPrefix + "Attack");
         }
 
         private void OnAttackAnimationEnd()

@@ -1,4 +1,6 @@
 using System;
+using _Project.Scripts.GameResources;
+using _Project.Scripts.PlayerLogic.InventoryLogic;
 using _Project.Scripts.Services;
 using UnityEngine;
 
@@ -8,6 +10,7 @@ namespace _Project.Scripts.PlayerLogic.AttackLogic
 	{
 		private InputService _inputService;
 		private WeaponBase _currentWeapon;
+		private InventoryController _inventoryController;
 		
 		public event Action OnAttacking;
 		
@@ -15,6 +18,7 @@ namespace _Project.Scripts.PlayerLogic.AttackLogic
 
 		private void Start()
 		{
+			_inventoryController = GetComponent<InventoryController>();
 			_inputService = GetComponent<Player>().InputService;
 			_inputService.AttackButtonPressed += OnAttackButtonPressed;
 		}
@@ -30,14 +34,25 @@ namespace _Project.Scripts.PlayerLogic.AttackLogic
 		}
 
 		private void OnAttackButtonPressed()
-		{ 
-			if (_currentWeapon.IsReadyToAttack)
+		{
+			if (!_currentWeapon.IsReadyToAttack)
 			{
-				if (_currentWeapon != null)
-				{
-					OnAttacking?.Invoke();
-					_currentWeapon.Attack();
-				}
+				return;
+			}
+			if (_currentWeapon == null)
+			{
+				return;
+			}
+			
+			if (CurrentWeaponType == WeaponType.Ranged && _inventoryController.GetSpecifiedResourceAmountOrLess(ResourceType.Bullet, 1) == 1)
+			{
+				OnAttacking?.Invoke();
+				_currentWeapon.Attack();
+			}
+			else if (CurrentWeaponType == WeaponType.Melee)
+			{
+				OnAttacking?.Invoke();
+				_currentWeapon.Attack();
 			}
 		}
 	}

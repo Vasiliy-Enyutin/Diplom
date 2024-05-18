@@ -129,6 +129,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shootingPoint: {fileID: 4866186573967451106}
-  _tracerWidth: 0.1
+  _tracerWidth: 0.02
   _tracerDuration: 0.01
   _tracerColor: {r: 0.7176471, g: 0.3529412, b: 0.3529412, a: 1}

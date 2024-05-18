@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using _Project.Scripts.EnemyLogic;
 using UnityEngine;
 
 namespace _Project.Scripts.PlayerLogic.AttackLogic
