@@ -65,10 +65,11 @@ namespace _Project.Scripts.Services
 		
 		public void CreateResources()
 		{
+			List<Vector3> availableSpawnPoints = new(_resourcesDatabase.SpawnPoints);
+
 			foreach (ResourceDescriptor resourceDescriptor in _resourcesDatabase.Resources)
 			{
 				int resourcesNumberOnMap = resourceDescriptor.ResourcesNumberOnMap;
-				List<Vector3> availableSpawnPoints = new(resourceDescriptor.SpawnPoints);
 
 				for (int i = 0; i < resourcesNumberOnMap; i++)
 				{
@@ -89,18 +90,6 @@ namespace _Project.Scripts.Services
 				}
 			}
 		}
-
-		// public void CreateResources()
-		// {
-		// 	foreach (ResourceDescriptor resourceDescriptor in _resourcesDatabase.Resources)
-		// 	{
-		// 		int resourcesNumberOnMap = resourceDescriptor.ResourcesNumberOnMap;
-		// 		foreach (Vector3 spawnPoint in resourceDescriptor.SpawnPoints)
-		// 		{
-		// 			GameResource resource = _assetProviderService.CreateAsset<GameResource>(resourceDescriptor.ResourcePrefab, spawnPoint);
-		// 		}
-		// 	}
-		// }
 
 		public void CreateEnemies()
 		{

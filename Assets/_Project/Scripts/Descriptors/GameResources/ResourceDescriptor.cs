@@ -10,6 +10,5 @@ namespace _Project.Scripts.Descriptors.GameResources
 		public ResourceType ResourceType;
 		public int ResourcesNumberOnMap;
 		public int ResourcesAmount;
-		public Vector3[] SpawnPoints;
 	}
 }
