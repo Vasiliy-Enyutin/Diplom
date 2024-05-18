@@ -36,6 +36,7 @@ namespace _Project.Scripts.Services
 		public List<Enemy> Enemies { get; } = new();
 
 		private MainBuilding _mainBuilding;
+		private List<GameResource> _gameResources = new();
 
 		public void CreateMainBuilding()
 		{
@@ -80,6 +81,7 @@ namespace _Project.Scripts.Services
 
 						GameResource resource = _assetProviderService.CreateAsset<GameResource>(resourceDescriptor.ResourcePrefab, spawnPoint);
 						resource.Init(resourceDescriptor.ResourceType, resourceDescriptor.ResourcesAmount);
+						_gameResources.Add(resource);
 
 						availableSpawnPoints.RemoveAt(randomIndex);
 					}
@@ -100,6 +102,16 @@ namespace _Project.Scripts.Services
 				enemy.OnEnemyDied += HandleEnemyDied;
 				Enemies.Add(enemy);
 			}
+		}
+
+		public void DestroyAllResources()
+		{
+			for (int i = 0; i < _gameResources.Count; i++)
+			{
+				_gameResources[0].Collect();
+			}
+			Debug.Log("Gameresources count " +  _gameResources.Count);
+			_gameResources.Clear();
 		}
 
 		public void DestroyAllEnemies()

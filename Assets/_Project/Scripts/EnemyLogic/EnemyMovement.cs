@@ -89,6 +89,10 @@ namespace _Project.Scripts.EnemyLogic
 
         private void SetTargetToMainBuilding()
         {
+	        if (_enemy.MainBuilding == null)
+	        {
+		        return;
+	        }
             _enemy.IsPursuingPlayer = false;
             _targetTransform = _enemy.MainBuilding.transform;
             _agent.SetDestination(_targetTransform.position);

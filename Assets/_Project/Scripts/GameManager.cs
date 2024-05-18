@@ -25,7 +25,6 @@ namespace _Project.Scripts
 	        _gameFactoryService.CreateMainBuilding();
             _gameFactoryService.CreatePlayer();
             _gameFactoryService.CreateCamera();
-            _gameFactoryService.CreateResources();
             _lightingManager.OnNightFalls += HandleOnNightFalls;
             _lightingManager.OnMorningComes += HandleOnMorningComes;
             NavMeshSurface ground = FindObjectOfType<NavMeshSurface>();
@@ -42,10 +41,13 @@ namespace _Project.Scripts
         private void HandleOnMorningComes()
         {
 	        _gameFactoryService.DestroyAllEnemies();
+	        _gameFactoryService.CreateResources();
         }
 
         private void HandleOnNightFalls()
         {
+	        _gameFactoryService.DestroyAllResources();
+
 	        _gameFactoryService.CreateEnemies();
 	        NavMeshSurface ground = FindObjectOfType<NavMeshSurface>();
 	        ground.UpdateNavMesh(ground.navMeshData);
