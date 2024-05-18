@@ -1,6 +1,7 @@
 using System;
 using _Project.Scripts.PlayerLogic.AttackLogic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace _Project.Scripts.Services
 {
@@ -17,7 +18,7 @@ namespace _Project.Scripts.Services
 
 	    private void Update()
 	    {
-		    if (Input.GetMouseButtonDown(0))
+		    if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
 		    {
 			    AttackButtonPressed?.Invoke();
 		    }
