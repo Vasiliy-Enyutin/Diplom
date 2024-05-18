@@ -7,8 +7,11 @@ namespace _Project.Scripts.PlayerLogic
 {
     public class Player : MonoBehaviour, IDamageable
     {
-	    private int _health;
+	    public event Action<int> OnPlayerHealthChanged;
 	    
+	    private int _currentHealth;
+	    private int _baseHealth;
+
 	    public event Action OnDestroy;
 
 	    public PlayerDescriptor PlayerDescriptor { get; private set; }
@@ -16,7 +19,9 @@ namespace _Project.Scripts.PlayerLogic
 
 	    public void Init(PlayerDescriptor playerDescriptor, InputService inputService)
 	    {
-		    _health = playerDescriptor.Health;
+		    _currentHealth = playerDescriptor.Health;
+		    _baseHealth = _currentHealth;
+		    OnPlayerHealthChanged?.Invoke(_currentHealth);
 		    
 		    PlayerDescriptor = playerDescriptor;
 		    InputService = inputService;
@@ -24,10 +29,10 @@ namespace _Project.Scripts.PlayerLogic
 
 	    public void TakeDamage(int damage)
 	    {
-		    Debug.Log("Player get hit. Damage: " + damage);
-		    _health -= damage;
+		    _currentHealth -= damage;
+		    OnPlayerHealthChanged?.Invoke(_currentHealth);
 	    
-		    if (_health <= 0)
+		    if (_currentHealth <= 0)
 		    {
 			    Die();
 		    }

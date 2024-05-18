@@ -20,24 +20,30 @@ namespace _Project.Scripts.UI.Panels
 		private TextMeshProUGUI  _bulletAmountText;
 		[SerializeField]
 		private TextMeshProUGUI _mainBuildingHealthText;
+		[SerializeField]
+		private TextMeshProUGUI _playerHealthText;
 		
 		private InventoryController _inventoryController;
 		private CraftController _craftController;
 		private MainBuilding _mainBuilding;
+		private Player _player;
 		
-		public void Init(MainBuilding mainBuilding, InventoryController inventoryController)
+		public void Init(MainBuilding mainBuilding, Player player)
 		{
-			_inventoryController = inventoryController;
-			_craftController = new CraftController(mainBuilding, inventoryController);
-
 			_mainBuilding = mainBuilding;
+			_player = player;
+			_inventoryController = player.GetComponent<InventoryController>();
+			_craftController = new CraftController(mainBuilding, _inventoryController);
+
 			_mainBuilding.OnMainBuildingHealthChanged += UpdateMainBuildingHealth;
+			_player.OnPlayerHealthChanged += UpdatePlayerHealth;
 			_inventoryController.OnResourceAmountChanged += ChangeResourceAmountUI;
 		}
 
 		private void OnDestroy()
 		{
 			_mainBuilding.OnMainBuildingHealthChanged -= UpdateMainBuildingHealth;
+			_player.OnPlayerHealthChanged -= UpdatePlayerHealth;
 			_inventoryController.OnResourceAmountChanged -= ChangeResourceAmountUI;
 		}
 
@@ -81,6 +87,11 @@ namespace _Project.Scripts.UI.Panels
 		private void UpdateMainBuildingHealth(int currentMainBuildingHealth)
 		{
 			_mainBuildingHealthText.text = currentMainBuildingHealth.ToString();
+		}
+
+		private void UpdatePlayerHealth(int currentPlayerHealth)
+		{
+			_playerHealthText.text = currentPlayerHealth.ToString();
 		}
 	}
 }

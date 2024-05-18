@@ -16,6 +16,7 @@ namespace _Project.Scripts
 		{
 			CurrentHealth = mainBuildingDescriptor.Health;
 			BaseHealth = mainBuildingDescriptor.Health;
+			OnMainBuildingHealthChanged?.Invoke(CurrentHealth);
 		}
 
 		public void Repair(int hp)

@@ -31,8 +31,7 @@ namespace _Project.Scripts.UI
             _gameOverPanel = _assetProviderService.CreateAsset<GameOverPanel>(_uiDescriptor.GameOverPanelPrefab, transform);
             
             _inventoryViewPanel = _assetProviderService.CreateAsset<InventoryViewPanel>(_uiDescriptor.InventoryViewPanelPrefab, transform);
-            Player player = _gameFactoryService.Player;
-            _inventoryViewPanel.Init(_gameFactoryService.MainBuilding, player.GetComponent<InventoryController>());
+            _inventoryViewPanel.Init(_gameFactoryService.MainBuilding, _gameFactoryService.Player);
 
             _mainMenuPanel.OnPlayerAnyKeyDown += InvokeUserReadyToPlay;
             _gameOverPanel.OnRestartKeyDown += InvokeRestart;
