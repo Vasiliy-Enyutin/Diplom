@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace _Project.Scripts
 {
-	// [ExecuteAlways]
 	public class LightingManager : MonoBehaviour
 	{
 		 [SerializeField] private Light DirectionalLight;
@@ -14,8 +13,8 @@ namespace _Project.Scripts
 		 [SerializeField, Range(0, 24)] private float TimeOfDay;
 		 [SerializeField] private float dayDurationInSeconds = 600f; // Продолжительность дня в секундах
 
-		 private bool isNightFallsInvoked = false;
-		 private bool isMorningComesInvoked = false;
+		 private bool _isNightFallsInvoked = false;
+		 private bool _isMorningComesInvoked = false;
 		 
 		 public event Action OnNightFalls; 
 		 public event Action OnMorningComes; 
@@ -32,19 +31,19 @@ namespace _Project.Scripts
 				 TimeOfDay %= 24; // Modulus to ensure always between 0-24
 
 				 // Проверяем, наступило ли время 20:00
-				 if ((TimeOfDay >= 20f || TimeOfDay < 8f) && !isNightFallsInvoked)
+				 if ((TimeOfDay >= 20f || TimeOfDay < 8f) && !_isNightFallsInvoked)
 				 {
 					 OnNightFalls?.Invoke();
-					 isNightFallsInvoked = true;
-					 isMorningComesInvoked = false;
+					 _isNightFallsInvoked = true;
+					 _isMorningComesInvoked = false;
 				 }
 
 				 // Проверяем, наступило ли время 8:00
-				 if (TimeOfDay >= 8f && TimeOfDay < 20f && !isMorningComesInvoked)
+				 if (TimeOfDay >= 8f && TimeOfDay < 20f && !_isMorningComesInvoked)
 				 {
 					 OnMorningComes?.Invoke();
-					 isMorningComesInvoked = true;
-					 isNightFallsInvoked = false;
+					 _isMorningComesInvoked = true;
+					 _isNightFallsInvoked = false;
 				 }
 
 				 UpdateLighting(TimeOfDay / 24f);

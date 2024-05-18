@@ -27,8 +27,8 @@ namespace _Project.Scripts
             _gameFactoryService.CreateCamera();
             _lightingManager.OnNightFalls += HandleOnNightFalls;
             _lightingManager.OnMorningComes += HandleOnMorningComes;
+            _lightingManager.enabled = false;
             NavMeshSurface ground = FindObjectOfType<NavMeshSurface>();
-            Debug.Log(ground);
             ground.BuildNavMesh();
         }
 
@@ -81,6 +81,7 @@ namespace _Project.Scripts
         private void StartGame()
         {
             _uiManager.ShowMenu(Menu.InventoryView);
+            _lightingManager.enabled = true;
             EnableCharactersMovement();
         }
 
