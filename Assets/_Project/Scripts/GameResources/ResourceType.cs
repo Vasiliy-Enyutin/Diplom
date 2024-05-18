@@ -3,6 +3,9 @@ namespace _Project.Scripts.GameResources
 	public enum ResourceType
 	{
 		Tree,
-		Rock
+		Steel,
+		Coal,
+		Lead,
+		Sulfur
 	}
 }
