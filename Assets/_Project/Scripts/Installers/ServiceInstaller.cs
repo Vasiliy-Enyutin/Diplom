@@ -14,7 +14,7 @@ namespace _Project.Scripts.Installers
 		[SerializeField]
 		private LightingManager _lightingManagerPrefab = null!;
 		[SerializeField]
-		private PursuitMusicController _pursuitMusicController = null!;
+		private PursuitMusicManager _pursuitMusicManager = null!;
 		
 		public override void InstallBindings()
 		{
@@ -23,7 +23,7 @@ namespace _Project.Scripts.Installers
 			Container.Bind<InputService>().FromComponentInNewPrefab(_inputServicePrefab).AsSingle();
 			Container.Bind<GameFactoryService>().AsSingle();
 			Container.Bind<UiManager>().FromComponentInNewPrefab(_uiManager).AsSingle();
-			Container.Bind<PursuitMusicController>().FromComponentInNewPrefab(_pursuitMusicController).AsSingle();
+			Container.Bind<PursuitMusicManager>().FromComponentInNewPrefab(_pursuitMusicManager).AsSingle();
 		}
 	}
 }

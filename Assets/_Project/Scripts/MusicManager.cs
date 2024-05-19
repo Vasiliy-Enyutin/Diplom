@@ -13,12 +13,12 @@ namespace _Project.Scripts
         private AudioSource _audioSource;
         private bool _isPaused = false;
 
-        private PursuitMusicController _pursuitMusicController;
+        private PursuitMusicManager _pursuitMusicManager;
 
         [Inject]
-        private void Construct(PursuitMusicController pursuitMusicController)
+        private void Construct(PursuitMusicManager pursuitMusicManager)
         {
-	        _pursuitMusicController = pursuitMusicController;
+	        _pursuitMusicManager = pursuitMusicManager;
         }
 
         private void Awake()
@@ -32,12 +32,12 @@ namespace _Project.Scripts
 
         private void Update()
         {
-            if (_pursuitMusicController.IsPlaying)
+            if (_pursuitMusicManager.IsPlaying)
             {
                 _isPaused = true;
                 _audioSource.Pause();
             }
-            else if (_isPaused && !_pursuitMusicController.IsPlaying)
+            else if (_isPaused && !_pursuitMusicManager.IsPlaying)
             {
                 _isPaused = false;
                 _audioSource.Play();

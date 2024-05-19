@@ -4140,7 +4140,7 @@ MonoBehaviour:
   _inputServicePrefab: {fileID: 8143843080792472803, guid: 1245d7334ad3ec74b8683be2473a674a, type: 3}
   _uiManager: {fileID: 640148083137886105, guid: 204475bc1c1966c4482469de99352082, type: 3}
   _lightingManagerPrefab: {fileID: 234069665010871279, guid: 7f7d69ab25ad4eb4aac3e5baffad74f4, type: 3}
-  _pursuitMusicController: {fileID: 7946482040268797531, guid: 87c6d3227a0ce724ea61e42ace93ee83, type: 3}
+  _pursuitMusicManager: {fileID: 7946482040268797531, guid: 87c6d3227a0ce724ea61e42ace93ee83, type: 3}
 --- !u!114 &1605380671
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ using Zenject;
 namespace _Project.Scripts
 {
     [RequireComponent(typeof(AudioSource))]
-    public class PursuitMusicController : MonoBehaviour
+    public class PursuitMusicManager : MonoBehaviour
     {
         [SerializeField]
         private AudioClip _pursuitAudioClip;
