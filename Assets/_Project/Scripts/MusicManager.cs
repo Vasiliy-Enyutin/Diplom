@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 namespace _Project.Scripts
 {
     [RequireComponent(typeof(AudioSource))]
-    public class MusicController : MonoBehaviour
+    public class MusicManager : MonoBehaviour
     {
         [SerializeField]
         private AudioClip[] _idleAudioClips;

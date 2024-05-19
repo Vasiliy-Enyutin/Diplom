@@ -2817,7 +2817,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7787419328098984277, guid: 152f0f20e331d0346a6a15b245a5184e, type: 3}
       propertyPath: m_Name
-      value: MusicController
+      value: MusicManager
       objectReference: {fileID: 0}
     - target: {fileID: 7787419328098984280, guid: 152f0f20e331d0346a6a15b245a5184e, type: 3}
       propertyPath: m_RootOrder
