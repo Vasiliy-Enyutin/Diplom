@@ -2,7 +2,7 @@ using System;
 using _Project.Scripts.Descriptors;
 using UnityEngine;
 
-namespace _Project.Scripts
+namespace _Project.Scripts.Services
 {
 	public class LightingManager : MonoBehaviour
 	{

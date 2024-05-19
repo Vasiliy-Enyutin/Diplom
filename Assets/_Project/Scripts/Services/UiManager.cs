@@ -1,11 +1,10 @@
 using System;
 using _Project.Scripts.Descriptors;
-using _Project.Scripts.Services;
 using _Project.Scripts.UI.Panels;
 using UnityEngine;
 using Zenject;
 
-namespace _Project.Scripts.UI
+namespace _Project.Scripts.Services
 {
     public class UiManager : MonoBehaviour
     {
