@@ -10,7 +10,7 @@ namespace _Project.Scripts.Services
     {
         private AssetProviderService _assetProviderService;
         private UiDescriptor _uiDescriptor;
-        private GameFactoryService _gameFactoryService;
+        private ObjectsLocatorService _objectsLocatorService;
 
         public event Action OnUserReadyToPlay;
         public event Action OnRestartKeyPressed;
@@ -20,11 +20,11 @@ namespace _Project.Scripts.Services
         private InventoryViewPanel _inventoryViewPanel;
 
         [Inject]
-        private void Construct(AssetProviderService assetProviderService, UiDescriptor uiDescriptor, GameFactoryService gameFactoryService)
+        private void Construct(AssetProviderService assetProviderService, UiDescriptor uiDescriptor, ObjectsLocatorService objectsLocatorService)
         {
 	        _assetProviderService = assetProviderService;
 	        _uiDescriptor = uiDescriptor;
-	        _gameFactoryService = gameFactoryService;
+	        _objectsLocatorService = objectsLocatorService;
         }
 
         private void Start()
@@ -33,7 +33,7 @@ namespace _Project.Scripts.Services
             _gameOverPanel = _assetProviderService.CreateAsset<GameOverPanel>(_uiDescriptor.GameOverPanelPrefab, transform);
             
             _inventoryViewPanel = _assetProviderService.CreateAsset<InventoryViewPanel>(_uiDescriptor.InventoryViewPanelPrefab, transform);
-            _inventoryViewPanel.Init(_gameFactoryService.MainBuilding, _gameFactoryService.Player);
+            _inventoryViewPanel.Init(_objectsLocatorService.MainBuilding, _objectsLocatorService.Player);
 
             _mainMenuPanel.OnPlayerAnyKeyDown += InvokeUserReadyToPlay;
             _gameOverPanel.OnRestartKeyDown += InvokeRestart;

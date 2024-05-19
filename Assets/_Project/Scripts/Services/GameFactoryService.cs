@@ -20,14 +20,8 @@ namespace _Project.Scripts.Services
 		private readonly MainBuildingDescriptor _mainBuildingDescriptor;
 		private readonly EnemyDescriptor _enemyDescriptor;
 		private readonly InputService _inputService;
-
-		public Player Player { get; private set; }
-
-		public List<Enemy> Enemies { get; } = new();
-
-		public MainBuilding MainBuilding;
-		private readonly List<GameResource> _gameResources = new();
-
+		private readonly ObjectsLocatorService _objectsLocatorService;
+		
 		[Inject]
 		private GameFactoryService(
 			AssetProviderService assetProviderService,
@@ -37,7 +31,8 @@ namespace _Project.Scripts.Services
 			ResourcesDatabase resourcesDatabase,
 			MainBuildingDescriptor mainBuildingDescriptor,
 			EnemyDescriptor enemyDescriptor,
-			InputService inputService)
+			InputService inputService,
+			ObjectsLocatorService objectsLocatorService)
 		{
 			_assetProviderService = assetProviderService;
 			_playerDescriptor = playerDescriptor;
@@ -47,19 +42,22 @@ namespace _Project.Scripts.Services
 			_mainBuildingDescriptor = mainBuildingDescriptor;
 			_enemyDescriptor = enemyDescriptor;
 			_inputService = inputService;
+			_objectsLocatorService = objectsLocatorService;
 		}
 		
 		public void CreateMainBuilding()
 		{
-			MainBuilding = _assetProviderService.CreateAsset<MainBuilding>(_mainBuildingDescriptor.Prefab,
+			MainBuilding mainBuilding = _assetProviderService.CreateAsset<MainBuilding>(_mainBuildingDescriptor.Prefab,
 				_locationDescriptor.InitialMainBuildingPositionPoint);
-			MainBuilding.Init(_mainBuildingDescriptor);
+			mainBuilding.Init(_mainBuildingDescriptor);
+			_objectsLocatorService.MainBuilding = mainBuilding;
 		}
 
 		public void CreatePlayer()
 		{
-			Player = _assetProviderService.CreateAsset<Player>(_playerDescriptor.Prefab, _locationDescriptor.InitialPlayerPositionPoint);
-			Player.Init(_playerDescriptor, _inputService);
+			Player player = _assetProviderService.CreateAsset<Player>(_playerDescriptor.Prefab, _locationDescriptor.InitialPlayerPositionPoint);
+			player.Init(_playerDescriptor, _inputService);
+			_objectsLocatorService.Player = player;
 		}
 
 		public void CreateCamera()
@@ -70,7 +68,7 @@ namespace _Project.Scripts.Services
 			
 			virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = _cameraDescriptor.CameraOffset;
 			virtualCamera.transform.rotation = _cameraDescriptor.CameraRotation;
-			Transform target = Player.transform;
+			Transform target = _objectsLocatorService.Player.transform;
 			virtualCamera.Follow = target;
 			virtualCamera.LookAt = target;
 		}
@@ -78,6 +76,7 @@ namespace _Project.Scripts.Services
 		public void CreateResources()
 		{
 			List<Vector3> availableSpawnPoints = new(_locationDescriptor.InitialResourcesSpawnPoints);
+			List<GameResource> gameResources = new();
 
 			foreach (ResourceDescriptor resourceDescriptor in _resourcesDatabase.Resources)
 			{
@@ -93,7 +92,7 @@ namespace _Project.Scripts.Services
 						GameResource resource = _assetProviderService.CreateAsset<GameResource>(resourceDescriptor.ResourcePrefab, spawnPoint);
 						resource.Init(resourceDescriptor.ResourceType, resourceDescriptor.ResourcesAmount);
 						resource.OnGameResourceCollected += HandleResourceCollected;
-						_gameResources.Add(resource);
+						gameResources.Add(resource);
 
 						availableSpawnPoints.RemoveAt(randomIndex);
 					}
@@ -103,11 +102,14 @@ namespace _Project.Scripts.Services
 					}
 				}
 			}
+
+			_objectsLocatorService.GameResources = gameResources;
 		}
 
 		public void CreateEnemies()
 		{
 			List<Vector3> availableSpawnPoints = new(_locationDescriptor.InitialEnemyPositionPoints);
+			List<Enemy> enemies = new();
 
 			for (int i = 0; i < _enemyDescriptor.EnemiesNumber; i++)
 			{
@@ -117,9 +119,9 @@ namespace _Project.Scripts.Services
 					Vector3 spawnPoint = availableSpawnPoints[randomIndex];
 
 					Enemy enemy = _assetProviderService.CreateAsset<Enemy>(_enemyDescriptor.Enemy, spawnPoint);
-					enemy.Init(Player.gameObject, _enemyDescriptor, MainBuilding);
+					enemy.Init(_objectsLocatorService.Player.gameObject, _enemyDescriptor, _objectsLocatorService.MainBuilding);
 					enemy.OnEnemyDied += HandleEnemyDied;
-					Enemies.Add(enemy);
+					enemies.Add(enemy);
 
 					availableSpawnPoints.RemoveAt(randomIndex);
 				}
@@ -128,36 +130,38 @@ namespace _Project.Scripts.Services
 					break;
 				}
 			}
+
+			_objectsLocatorService.Enemies = enemies;
 		}
 
 		public void DestroyAllResources()
 		{
-			int resourcesCount = _gameResources.Count;
+			int resourcesCount = _objectsLocatorService.GameResources.Count;
 			for (int i = 0; i < resourcesCount; i++)
 			{
-				_gameResources[0].Collect();
+				_objectsLocatorService.GameResources[0].Collect();
 			}
 		}
 
 		public void DestroyAllEnemies()
 		{
-			int enemiesCount = Enemies.Count;
+			int enemiesCount = _objectsLocatorService.Enemies.Count;
 			for (int i = 0; i < enemiesCount; i++)
 			{
-				Enemies[0].TakeDamage(_enemyDescriptor.Health);
+				_objectsLocatorService.Enemies[0].TakeDamage(_enemyDescriptor.Health);
 			}
 		}
 
 		private void HandleResourceCollected(GameResource resource)
 		{
 			resource.OnGameResourceCollected -= HandleResourceCollected;
-			_gameResources.Remove(resource);
+			_objectsLocatorService.GameResources.Remove(resource);
 		}
 
 		private void HandleEnemyDied(Enemy enemy)
 		{
 			enemy.OnEnemyDied -= HandleEnemyDied;
-			Enemies.Remove(enemy);
+			_objectsLocatorService.Enemies.Remove(enemy);
 		}
 	}
 }

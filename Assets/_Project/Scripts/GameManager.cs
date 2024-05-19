@@ -14,13 +14,15 @@ namespace _Project.Scripts
         private UiManager _uiManager;
         private GameFactoryService _gameFactoryService;
         private LightingManager _lightingManager;
+        private ObjectsLocatorService _objectsLocatorService;
 
         [Inject]
-        private void Construct(UiManager uiManager, GameFactoryService gameFactoryService, LightingManager lightingManager)
+        private void Construct(UiManager uiManager, GameFactoryService gameFactoryService, LightingManager lightingManager, ObjectsLocatorService objectsLocatorService)
         {
 	        _uiManager = uiManager;
 	        _gameFactoryService = gameFactoryService;
 	        _lightingManager = lightingManager;
+	        _objectsLocatorService = objectsLocatorService;
         }
 
         private void Awake()
@@ -30,7 +32,7 @@ namespace _Project.Scripts
 	        _gameFactoryService.CreateMainBuilding();
             _gameFactoryService.CreatePlayer();
             _gameFactoryService.CreateCamera();
-            _gameFactoryService.MainBuilding.OnDestruction += ShowGameOverPanel;
+            _objectsLocatorService.MainBuilding.OnDestruction += ShowGameOverPanel;
             _lightingManager.OnNightFalls += HandleOnNightFalls;
             _lightingManager.OnMorningComes += HandleOnMorningComes;
             _lightingManager.enabled = false;
@@ -44,9 +46,9 @@ namespace _Project.Scripts
 
 	        _uiManager.OnUserReadyToPlay += StartGame;
 	        _uiManager.OnRestartKeyPressed += RestartLevel;
-	        if (_gameFactoryService.Player != null)
+	        if (_objectsLocatorService.Player != null)
 	        {
-		        _gameFactoryService.Player.OnDestroy += ShowGameOverPanel;
+		        _objectsLocatorService.Player.OnDestroy += ShowGameOverPanel;
 	        }
 
 	        _uiManager.ShowMenu(Menu.Main);
@@ -54,15 +56,15 @@ namespace _Project.Scripts
 
         private void OnDestroy()
         {
-	        _gameFactoryService.MainBuilding.OnDestruction -= ShowGameOverPanel;
+	        _objectsLocatorService.MainBuilding.OnDestruction -= ShowGameOverPanel;
 	        _lightingManager.OnNightFalls -= HandleOnNightFalls;
 	        _lightingManager.OnMorningComes -= HandleOnMorningComes;
 	        _uiManager.OnUserReadyToPlay -= StartGame;
 	        _uiManager.OnRestartKeyPressed -= RestartLevel;
 
-	        if (_gameFactoryService.Player != null)
+	        if (_objectsLocatorService.Player != null)
 	        {
-		        _gameFactoryService.Player.OnDestroy -= ShowGameOverPanel;
+		        _objectsLocatorService.Player.OnDestroy -= ShowGameOverPanel;
 	        }
         }
 
@@ -90,14 +92,14 @@ namespace _Project.Scripts
 
         private void EnableCharactersMovement()
         {
-            _gameFactoryService.Player.GetComponent<PlayerMovement>().enabled = true;
-            _gameFactoryService.Enemies.ForEach(enemy => enemy.GetComponent<NavMeshAgent>().enabled = true);
+	        _objectsLocatorService.Player.GetComponent<PlayerMovement>().enabled = true;
+	        _objectsLocatorService.Enemies?.ForEach(enemy => enemy.GetComponent<NavMeshAgent>().enabled = true);
         }
 
         private void DisableCharactersMovement()
         {
-            _gameFactoryService.Player.GetComponent<PlayerMovement>().enabled = false;
-            _gameFactoryService.Enemies.ForEach(enemy => enemy.GetComponent<NavMeshAgent>().enabled = false);
+	        _objectsLocatorService.Player.GetComponent<PlayerMovement>().enabled = false;
+	        _objectsLocatorService.Enemies?.ForEach(enemy => enemy.GetComponent<NavMeshAgent>().enabled = false);
         }
 
         private void ShowGameOverPanel()

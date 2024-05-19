@@ -16,7 +16,7 @@ namespace _Project.Scripts
         [SerializeField]
         private float _clipsFadeDuration;
 
-        private GameFactoryService _gameFactoryService;
+        private ObjectsLocatorService _objectsLocatorService;
 
         private AudioSource _audioSource;
         private float _startTime = 0f;
@@ -25,9 +25,9 @@ namespace _Project.Scripts
         public bool IsPlaying { get; private set; } = false;
 
         [Inject]
-        private void Construct(GameFactoryService gameFactoryService)
+        private void Construct(ObjectsLocatorService objectsLocatorService)
         {
-	        _gameFactoryService = gameFactoryService;
+	        _objectsLocatorService = objectsLocatorService;
         }
 
         private void Awake()
@@ -63,7 +63,7 @@ namespace _Project.Scripts
 
         private bool CheckEnemyPursuitState()
         {
-	        return _gameFactoryService.Enemies != null && _gameFactoryService.Enemies.Any(enemy => enemy.IsPursuingPlayer);
+	        return _objectsLocatorService.Enemies != null && _objectsLocatorService.Enemies.Any(enemy => enemy.IsPursuingPlayer);
         }
 
         private void PlayPursuitMusic()

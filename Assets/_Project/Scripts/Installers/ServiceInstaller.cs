@@ -1,5 +1,4 @@
 using _Project.Scripts.Services;
-using _Project.Scripts.UI;
 using UnityEngine;
 using Zenject;
 
@@ -19,6 +18,7 @@ namespace _Project.Scripts.Installers
 		public override void InstallBindings()
 		{
 			Container.Bind<LightingManager>().FromComponentInNewPrefab(_lightingManagerPrefab).AsSingle();
+			Container.Bind<ObjectsLocatorService>().AsSingle();
 			Container.Bind<AssetProviderService>().AsSingle();
 			Container.Bind<InputService>().FromComponentInNewPrefab(_inputServicePrefab).AsSingle();
 			Container.Bind<GameFactoryService>().AsSingle();
