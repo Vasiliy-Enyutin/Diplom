@@ -7,8 +7,12 @@ namespace _Project.Scripts.Services
 	[UsedImplicitly]
 	public class AssetProviderService
 	{
-		[Inject]
-		private DiContainer _diContainer = null!;
+		private readonly DiContainer _diContainer;
+
+		private AssetProviderService(DiContainer diContainer)
+		{
+			_diContainer = diContainer;
+		}
 
 		public T CreateAsset<T>(Object prefab, Vector3 position) where T : MonoBehaviour
 		{

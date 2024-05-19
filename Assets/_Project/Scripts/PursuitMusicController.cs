@@ -16,21 +16,26 @@ namespace _Project.Scripts
         [SerializeField]
         private float _clipsFadeDuration;
 
-        [Inject]
         private GameFactoryService _gameFactoryService;
 
         private AudioSource _audioSource;
         private float _startTime = 0f;
-        private float startVolume;
+        private float _startVolume;
 
         public bool IsPlaying { get; private set; } = false;
+
+        [Inject]
+        private void Construct(GameFactoryService gameFactoryService)
+        {
+	        _gameFactoryService = gameFactoryService;
+        }
 
         private void Awake()
         {
             _audioSource = GetComponent<AudioSource>();
             _audioSource.loop = true;
             _audioSource.playOnAwake = false;
-            startVolume = _audioSource.volume;
+            _startVolume = _audioSource.volume;
             _audioSource.clip = _pursuitAudioClip;
         }
 
@@ -75,13 +80,13 @@ namespace _Project.Scripts
 
             while (elapsedTime < fadeDuration)
             {
-                _audioSource.volume = Mathf.Lerp(startVolume, 0f, elapsedTime / fadeDuration);
+                _audioSource.volume = Mathf.Lerp(_startVolume, 0f, elapsedTime / fadeDuration);
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
 
             _audioSource.Stop();
-            _audioSource.volume = startVolume;
+            _audioSource.volume = _startVolume;
             IsPlaying = false;
         }
     }

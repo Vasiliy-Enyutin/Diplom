@@ -11,12 +11,17 @@ namespace _Project.Scripts
 {
     public class GameManager : MonoBehaviour
     {
-        [Inject]
         private UiManager _uiManager;
-        [Inject]
         private GameFactoryService _gameFactoryService;
-        [Inject]
         private LightingManager _lightingManager;
+
+        [Inject]
+        private void Construct(UiManager uiManager, GameFactoryService gameFactoryService, LightingManager lightingManager)
+        {
+	        _uiManager = uiManager;
+	        _gameFactoryService = gameFactoryService;
+	        _lightingManager = lightingManager;
+        }
 
         private void Awake()
         {

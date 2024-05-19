@@ -5,31 +5,21 @@ using _Project.Scripts.EnemyLogic;
 using _Project.Scripts.GameResources;
 using _Project.Scripts.PlayerLogic;
 using Cinemachine;
-using JetBrains.Annotations;
 using UnityEngine;
 using Zenject;
 
 namespace _Project.Scripts.Services
 {
-	[UsedImplicitly]
 	public class GameFactoryService
 	{
-		[Inject]
-		private AssetProviderService _assetProviderService = null!;
-		[Inject]
-		private PlayerDescriptor _playerDescriptor = null!;
-		[Inject]
-		private CameraDescriptor _cameraDescriptor = null!;
-		[Inject]
-		private LocationDescriptor _locationDescriptor = null!;
-		[Inject]
-		private ResourcesDatabase _resourcesDatabase = null!;
-		[Inject]
-		private MainBuildingDescriptor _mainBuildingDescriptor = null!;
-		[Inject]
-		private EnemyDescriptor _enemyDescriptor;
-		[Inject]
-		private InputService _inputService;
+		private readonly AssetProviderService _assetProviderService;
+		private readonly PlayerDescriptor _playerDescriptor;
+		private readonly CameraDescriptor _cameraDescriptor;
+		private readonly LocationDescriptor _locationDescriptor;
+		private readonly ResourcesDatabase _resourcesDatabase;
+		private readonly MainBuildingDescriptor _mainBuildingDescriptor;
+		private readonly EnemyDescriptor _enemyDescriptor;
+		private readonly InputService _inputService;
 
 		public Player Player { get; private set; }
 
@@ -38,6 +28,27 @@ namespace _Project.Scripts.Services
 		public MainBuilding MainBuilding;
 		private readonly List<GameResource> _gameResources = new();
 
+		[Inject]
+		private GameFactoryService(
+			AssetProviderService assetProviderService,
+			PlayerDescriptor playerDescriptor,
+			CameraDescriptor cameraDescriptor,
+			LocationDescriptor locationDescriptor,
+			ResourcesDatabase resourcesDatabase,
+			MainBuildingDescriptor mainBuildingDescriptor,
+			EnemyDescriptor enemyDescriptor,
+			InputService inputService)
+		{
+			_assetProviderService = assetProviderService;
+			_playerDescriptor = playerDescriptor;
+			_cameraDescriptor = cameraDescriptor;
+			_locationDescriptor = locationDescriptor;
+			_resourcesDatabase = resourcesDatabase;
+			_mainBuildingDescriptor = mainBuildingDescriptor;
+			_enemyDescriptor = enemyDescriptor;
+			_inputService = inputService;
+		}
+		
 		public void CreateMainBuilding()
 		{
 			MainBuilding = _assetProviderService.CreateAsset<MainBuilding>(_mainBuildingDescriptor.Prefab,

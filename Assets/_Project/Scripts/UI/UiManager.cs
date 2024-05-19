@@ -1,7 +1,5 @@
 using System;
 using _Project.Scripts.Descriptors;
-using _Project.Scripts.PlayerLogic;
-using _Project.Scripts.PlayerLogic.InventoryLogic;
 using _Project.Scripts.Services;
 using _Project.Scripts.UI.Panels;
 using UnityEngine;
@@ -11,12 +9,9 @@ namespace _Project.Scripts.UI
 {
     public class UiManager : MonoBehaviour
     {
-        [Inject]
-        private AssetProviderService _assetProviderService = null!;
-        [Inject]
-        private UiDescriptor _uiDescriptor = null!;
-        [Inject]
-        private GameFactoryService _gameFactoryService = null!;
+        private AssetProviderService _assetProviderService;
+        private UiDescriptor _uiDescriptor;
+        private GameFactoryService _gameFactoryService;
 
         public event Action OnUserReadyToPlay;
         public event Action OnRestartKeyPressed;
@@ -24,6 +19,14 @@ namespace _Project.Scripts.UI
         private MainMenuPanel _mainMenuPanel;
         private GameOverPanel _gameOverPanel;
         private InventoryViewPanel _inventoryViewPanel;
+
+        [Inject]
+        private void Construct(AssetProviderService assetProviderService, UiDescriptor uiDescriptor, GameFactoryService gameFactoryService)
+        {
+	        _assetProviderService = assetProviderService;
+	        _uiDescriptor = uiDescriptor;
+	        _gameFactoryService = gameFactoryService;
+        }
 
         private void Start()
         {

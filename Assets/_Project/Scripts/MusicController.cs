@@ -13,8 +13,13 @@ namespace _Project.Scripts
         private AudioSource _audioSource;
         private bool _isPaused = false;
 
-        [Inject]
         private PursuitMusicController _pursuitMusicController;
+
+        [Inject]
+        private void Construct(PursuitMusicController pursuitMusicController)
+        {
+	        _pursuitMusicController = pursuitMusicController;
+        }
 
         private void Awake()
         {
