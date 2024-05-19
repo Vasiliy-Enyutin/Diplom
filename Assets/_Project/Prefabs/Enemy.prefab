@@ -109,7 +109,6 @@ GameObject:
   - component: {fileID: 5938040036998107608}
   - component: {fileID: -2803342004414049443}
   - component: {fileID: -3878145302525963722}
-  - component: {fileID: 6222070061958757922}
   - component: {fileID: 7114316728818243886}
   - component: {fileID: 437760234468287384}
   - component: {fileID: -6008475192831667562}
@@ -226,18 +225,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponCollider: {fileID: 2886522486486410623}
---- !u!114 &6222070061958757922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7332177530921828952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f4286ae520ef9343856aff61d8e3351, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7114316728818243886
 MonoBehaviour:
   m_ObjectHideFlags: 0
