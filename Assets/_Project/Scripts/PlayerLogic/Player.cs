@@ -33,22 +33,25 @@ namespace _Project.Scripts.PlayerLogic
 	    {
 		    _currentHealth -= damage;
 		    OnPlayerHealthChanged?.Invoke(_currentHealth);
+		    if (_currentHealth <= 0)
+		    {
+			    Die();
+		    }
+		    
 		    if (!_isRestoringHealth)
 		    {
 			    StartCoroutine(RestoreHealthOverTime(PlayerDescriptor.RestoreHealthAmount,
 				    PlayerDescriptor.RestoreHealthInterval));
 		    }
-		    
-		    if (_currentHealth <= 0)
-		    {
-			    Die();
-		    }
 	    }
 
 	    private void Die()
         {
-            OnDestroy?.Invoke();
-            Destroy(gameObject);
+	        OnDestroy?.Invoke();
+	        if (Application.isPlaying)
+	        {
+		        Destroy(gameObject);
+	        }
         }
 	    
 	    private IEnumerator RestoreHealthOverTime(int amount, float interval)
