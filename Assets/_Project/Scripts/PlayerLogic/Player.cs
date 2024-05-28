@@ -31,6 +31,10 @@ namespace _Project.Scripts.PlayerLogic
 
 	    public void TakeDamage(int damage)
 	    {
+		    if (damage <= 0)
+		    {
+			    return;
+		    }
 		    _currentHealth -= damage;
 		    OnPlayerHealthChanged?.Invoke(_currentHealth);
 		    if (_currentHealth <= 0)
@@ -59,13 +63,13 @@ namespace _Project.Scripts.PlayerLogic
 		    _isRestoringHealth = true;
 		    while (_currentHealth < _baseHealth)
 		    {
+			    yield return new WaitForSeconds(interval);
 			    _currentHealth += amount;
 			    if (_currentHealth > _baseHealth)
 			    {
 				    _currentHealth = _baseHealth;
 			    }
 			    OnPlayerHealthChanged?.Invoke(_currentHealth);
-			    yield return new WaitForSeconds(interval);
 		    }
 
 		    _isRestoringHealth = false;
