@@ -45,27 +45,5 @@ namespace _Project.Scripts.PlayerLogic.InventoryLogic
 			_resourceTypeByAmount[resourceType] -= amount;
 			return amount;
 		}
-
-		// public int GetSpecifiedResourceAmountOrLess(ResourceType resourceType, int amount)
-		// {
-		// 	if (!_resourceTypeByAmount.TryGetValue(resourceType, out int currentAmount))
-		// 	{
-		// 		return 0;
-		// 	}
-		//
-		// 	if (currentAmount >= amount)
-		// 	{
-		// 		_resourceTypeByAmount[resourceType] -= amount;
-		// 		return amount;
-		// 	}
-		//
-		// 	_resourceTypeByAmount[resourceType] -= currentAmount;
-		// 	return currentAmount;
-		// }
-		//
-		// public int GetAllResourceByType(ResourceType resourceType)
-		// {
-		// 	return _resourceTypeByAmount.TryGetValue(resourceType, out int currentAmount) ? currentAmount : 0;
-		// }
 	}
 }

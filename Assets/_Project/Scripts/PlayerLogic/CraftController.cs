@@ -1,5 +1,4 @@
-﻿using System;
-using _Project.Scripts.GameResources;
+﻿using _Project.Scripts.GameResources;
 using _Project.Scripts.PlayerLogic.InventoryLogic;
 
 namespace _Project.Scripts.PlayerLogic

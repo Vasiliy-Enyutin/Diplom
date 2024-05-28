@@ -1,4 +1,3 @@
-using _Project.Scripts.Descriptors;
 using _Project.Scripts.Services;
 using Cinemachine;
 using UnityEngine;
