@@ -33,7 +33,7 @@ namespace _Project.Scripts.PlayerLogic.AttackLogic
 			_currentWeapon = weapon;
 		}
 
-		private void OnAttackButtonPressed()
+		public void OnAttackButtonPressed()
 		{
 			if (!_currentWeapon.IsReadyToAttack)
 			{

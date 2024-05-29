@@ -19,7 +19,11 @@ namespace _Project.Scripts.PlayerLogic
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            _mainCamera = FindObjectOfType<CinemachineBrain>().GetComponent<Camera>();
+            CinemachineBrain cinemachineBrain = FindObjectOfType<CinemachineBrain>();
+            if (cinemachineBrain != null)
+            {
+	            cinemachineBrain.TryGetComponent(out _mainCamera);
+            }
         }
 
         private void Start()
