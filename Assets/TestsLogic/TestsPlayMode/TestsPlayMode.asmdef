@@ -3,5 +3,5 @@
     "optionalUnityReferences": [
         "TestAssemblies"
     ],
-    "references":[ "GUID:2d15921ab8ab18944a6e614c5f46c75f" ]
+    "references":[ "GUID:2d15921ab8ab18944a6e614c5f46c75f", "GUID:8c4dd21966739024fbd72155091d199e" ]
 }

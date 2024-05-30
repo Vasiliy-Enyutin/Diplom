@@ -39,7 +39,10 @@ namespace _Project.Scripts.EnemyLogic
 		private void Die()
 		{
 			OnEnemyDied?.Invoke(this);
-			Destroy(gameObject);
+			if (Application.isPlaying)
+			{
+				Destroy(gameObject);
+			}
 		}
 	}
 }

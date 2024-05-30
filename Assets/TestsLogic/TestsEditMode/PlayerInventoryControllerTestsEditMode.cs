@@ -12,7 +12,7 @@ namespace TestsLogic.TestsEditMode
         [SetUp]
         public void Setup()
         {
-            var gameObject = new GameObject();
+            GameObject gameObject = new GameObject();
             _inventoryController = gameObject.AddComponent<InventoryController>();
         }
 
